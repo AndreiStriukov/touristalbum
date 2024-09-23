@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+  <div class="wrap_body">
+        <div class="filter_block">
+           {% include 'album/part_views/a_filters.html' %}
+        </div>
+        <div class="body_block" id="post_a_filter">
+            <div class="cont_page_menu">
+                <div class="page_menu">
+                     ::
+                    <a href="" class="filter_link">
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                    </a>
+                     ::
+                    <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
+                    {{head}}
+                </div>
+                <div>
+                    <a href="{% url 'add_album' %}" title="Добавить альбом">
+                        <div class="menu_add">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="wropper_cart_menu">
+                {% include 'album/part_views/albums.html' %}
+            </div>
+        </div>
+
+  </div>
+
+
+{% endblock %}

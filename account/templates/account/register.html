@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+    <form method="post" class="form_center login_form" id="reg_form">
+        <h2>{{head}}</h2>
+        {% csrf_token %}
+        {% for field in form%}
+            <div class="login_box">
+                {{ field.label }} {{ field }}
+            </div>
+        {% endfor %}
+        <br>
+        <button type="submit" class="big_button blue_button">{{button}}</button>
+    </form>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Registration in progress
+{% endblock %}
+
+{% block content %}
+    <div class="post_center">
+        <h4>
+            <i class="fa fa-window-close" aria-hidden="true"></i>
+            Your link is invalid, please login again</h4>
+        <a href="{% url 'login' %}">SIGN IN</a>
+    </div>
+{% endblock %}

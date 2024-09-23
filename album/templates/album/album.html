@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% block title %} {{title}} {{ album.a_name }} {% endblock %}
+{% block content %}
+{% load album_tags %}
+    <div class="body_block">
+        <div class="cont_page_menu"> <!-- Меню "хлебные крошки" -->
+            <div class="page_menu">
+                    <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
+                    <a href="{% url 'show_photos_list' %}" class="page_menu_link">{{head}}</a>
+                     {{head}} {{ album.a_name }}
+            </div>
+            <div>
+                <a href="{% url 'add_album' %}" title="Создать альбом">
+                    <div class="menu_add">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="cont_page_menu">
+            <div class="post_center">
+                <div class="crud_menu">
+                    <a href="{% url 'add_album_photo' alb_slug=album.a_slug %}" class="link_item">
+                        <i class="fa fa-download" aria-hidden="true"></i> Добавить фото
+                    </a>
+                    <a href="{% url 'edit_album' alb_slug=album.a_slug %}" class="link_item">
+                        <i class="fa fa-pencil" aria-hidden="true"></i> Редактировать альбом
+                    </a>
+                </div>
+                <div class="wrap_body">
+                    <div class="album_logo">
+                        <h3>{{album.a_name}}</h3>
+                        <img src="{% get_alb_cover album %}" class="alb_thumb">
+                        <div class="stars">
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                        </div>
+                        <p></p>
+                        <div class="crud_menu">
+                            {% get_photo_count album as ph_count %}
+                            {% if ph_count > 0 %}
+                                <a href="{{ album.get_absolute_url }}" class="link_item">
+                                    <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                    Просмотр фото ({{ph_count}})</a>
+                            {% else %}
+                                <i class="link_item"> В альбоме нет фото </i>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="wrap_properties">
+                        <div class="album_properties">
+                            {% get_alb_access album.a_is_active as access %}
+                            <p class="alb_prop_icon"><i class="fa {{access.0}}" aria-hidden="true"></i></p>
+                            <p>{{access.1}}</p>
+                        </div>
+                        <div class="album_properties">
+                            <p class="alb_prop_icon"><i class="fa fa-calendar" aria-hidden="true"></i></p>
+                            Путешествие<br>
+                            {% in_month album.j_month %} {{album.j_year}}
+                        </div>
+                        <div class="album_properties">
+                            <p class="alb_prop_icon"><i class="fa fa-users" aria-hidden="true"></i></p>
+                            Участники путешествия: <br> {{album.travel_participants}}
+                        </div>
+                        <div class="album_properties">
+                            <p class="alb_prop_icon"><i class="fa fa-ship" aria-hidden="true"></i></p>
+                            Характер путешествия: <br> {{album.j_type}}</div>
+                        <div class="album_properties">
+                            <p class="alb_prop_icon"><i class="fa fa-user-o" aria-hidden="true"></i></p>
+                            Создал: <br>
+                            {% get_username album.a_author %}
+                        </div>
+                        <div class="album_properties">
+                            <p class="alb_prop_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></p>
+                            <p>Создан: {{album.a_date_create|date:"d.m.Y"}}</p>
+                            <p>Изменен: {{album.a_date_update|date:"d.m.Y"}}</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="album_about">
+                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                    Описание:<br> {{album.a_descr}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+
+.body_block{
+	display: block;
+}
+
+.filters_wrapper{
+	display: block;
+	width: 265px;
+	text-align: left;
+	border: solid;
+	border-width: 0px 1px 0px 0px;
+	border-color: gray;
+	padding-right: 15px;
+	margin-top: 15px;
+}
+
+.alb_filters{
+	margin: 10px auto;
+	position: relative;
+}
+
+.alb_filter_label{
+	padding: 7px 24px 7px 7px;
+	text-transform: uppercase;
+	position: relative;
+	cursor: pointer;
+	
+}
+
+.alb_filter_label:before{
+	content: "";
+	width: 6px;
+	height: 6px;
+	position: absolute;
+	display: inline-block;
+	right: 20px;
+	top: 16px;
+	border: solid black;
+    border-width: 0px 1px 1px 0px;
+	transform: rotate(225deg);
+    -webkit-transform: rotate(225deg);
+    padding: 1px;
+}
+
+.alb_filter_label.active:before{
+	transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    top: 10px;
+}
+
+
+.alb_filter_apply{
+	padding: 16px;
+}
+
+.alb_filter_list_checkbox{
+	margin-left: 15px;
+	display: block;
+}
+
+.alb_filter_list_checkbox.active{
+	display: none;
+}
+
+.filters_list_item{
+	cursor: pointer;
+}
+
+.input_checkbox{
+
+}

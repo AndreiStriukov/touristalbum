@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+    <div class="form_center">
+        <div class="page_menu">
+            <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
+            <a href="{% url 'profile' user_id=user.pk %}" class="page_menu_link">{{top_head}}</a>
+            {{head}}
+        </div>
+        <p></p>
+        <div>
+            <h3>{{head}}</h3>
+        </div>
+        <hr>
+        <form action="{% url 'edit_account' %}" method="post" enctype="multipart/form-data" class="profile_center">
+            {% csrf_token %}
+        <div class="user_card">
+            <div class="user_left">
+                <div class="avatar_container">
+                    <img src="{{user.get_avatar_url}}" class="avatar">
+                    <div class="avatar_choice">
+                        <!-- Change avatar -->
+                        {{ p_form }}
+                    </div>
+                    <h3 class="user_name">
+                        {% if user.first_name %}
+                            {{user.first_name}}
+                            {% if user.last_name %} {{user.last_name}} {% endif %}
+                             <br>({{user.username}})
+                        {% else %}
+                            {{user.username}}
+                        {% endif %}
+                    </h3>
+                    <div class="user_menu"><p><a href="">Delete account</a></p></div>
+                </div>
+            </div>
+            <div class="user_properties">
+                <h4>Изменить данные:</h4>
+                <div class="form-error">{{form.non_field_errors}}</div>
+                {% for f in u_form %}
+                    <p><label class="form-label" for="{{ f.id_for_label }}">{{ f.label }}: </label> {{ f }}</p>
+                {% endfor %}
+                <button type="submit" class="big_button blue_button">{{button}}</button>
+            </div>
+        </div>
+        </form>
+
+    </div>
+
+{% endblock %}

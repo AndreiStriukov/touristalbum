@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+{% block title %} {{title}} {% endblock %}
+
+{% block content %}
+<div class="wrap_body">
+    <div class="filter_block">
+    <!-- includede 'album/filters.html'-->
+    </div>
+    <div class="body_block">
+        <div class="cont_page_menu">
+            <div class="page_menu">
+                {% if alb_slug %}
+                    <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
+                    <a href="{% url 'show_photos_list' %}" class="page_menu_link">{{head}}</a>
+                     {{head}} {{ photos.0.ph_album.a_name }}
+                {% else %}
+                    <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
+                    {{head}}
+                {% endif %}
+            </div>
+            <div>
+                <a href="{% url 'add_photo' %}" title="Добавить фото">
+                    <div class="menu_add">
+                        <i class="fa fa-download" aria-hidden="true"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% load album_tags %}
+        {% if alb_slug %}
+            <div class="cont_page_menu">
+                <div class="post_center">
+                    <div class="crud_menu">
+                        <a href="{% url 'get_album' alb_slug=photos.0.ph_album.a_slug %}" class="link_item">
+                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Перейти к альбому
+                        </a>
+                    </div>
+                    <p><b>Альбом:</b> {{ photos.0.ph_album.a_name }}</p>
+                    <p><b>Описание:</b> {{photos.0.ph_album.a_descr}}</p>
+                    <p><b>Создал:</b>
+                        {% get_username photos.0.ph_album.a_author %}
+                    </p>
+
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="wropper_photo_menu">
+            {%  for photo in photos %}
+                <div class="photo_menu">
+                    <div class="photo_item">
+                        <a href="{{ photo.get_absolute_url }}">
+                            <img src="{{photo.ph_file.url}}" class="photo_thumb">
+                        </a>
+                    </div>
+                    <h3>{{photo.ph_name| truncatewords:5}}</h3>
+                    <div class="link_photo">
+                        {% if photo.ph_author == request.user %}
+                            <a href="{% url 'edit_photo' photo_slug=photo.ph_slug %}" class="link_item2">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> Редактировать фото
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

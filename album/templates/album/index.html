@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %} {{title}} {% endblock %}
+{% block top_content %}
+    <div class="main_img">
+        <img src="/media/img/index/cap_index.png" class="main_img">
+        <div class="main_text">
+            <div>
+                <h2>О сайте</h2>
+                <p class="main_text">
+                    На сайте "Альбом туриста" предоставлена возможность поделиться своими воспоминаниями
+                    и эмоциями о путешествиях, полученными во время путешествий.
+                </p>
+                <p class="main_text">
+                    Создавайте альбомы путешествий и публикуйте в альбомах свои фотографии.
+                    Поделитесь впечатлениями о местах где находились. Расскажите какой компанией отдыхали.
+                    Наслаждайтесь своими воспоминаниями и удивляйтесь воспоминаниям других.
+                </p>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+{% block content %}
+    {% include 'album/part_views/albums.html' %}
+{% endblock %}

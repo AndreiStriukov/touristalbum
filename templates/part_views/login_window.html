@@ -1,0 +1,29 @@
+<div class="cd-user-modal">
+    <div class="cd-user-modal-container">
+
+        <form action="{% url 'login' %}" method="post" class="form_center login_form" id="login_form">
+            <h2>Вход</h2>
+            <div class="form_message message_non"></div>
+
+            {% csrf_token %}
+            <div class="login_box">
+                {{ login.email }}
+            </div>
+            <div class="login_box">
+                {{ login.password }}
+                <a href="#0" class="show_password"><i class="fa fa-lock" aria-hidden="true" id="lock"></i></a>
+            </div>
+
+            <div class="forgot_link">
+                <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+            </div>
+            <button type="submit" class="big_button blue_button">Войти</button>
+        </form>
+        <div class="register_link">
+            <p>Не зарегистрированы?<a href="{% url 'registration' %}">
+                Присоединяйтесь <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </a></p>
+        </div>
+    </div>
+
+</div>

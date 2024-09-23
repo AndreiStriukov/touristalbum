@@ -1,0 +1,63 @@
+{% load album_tags %}
+{% get_main_menu request.user as menu %}
+<div class="header_body">
+    <div class="logo inline_block">
+        <a href="{% url 'index' %}" class="site_logo"><h1 class="site_logo"></h1></a>
+        <h1 class="site_name">АЛЬБОМ Туриста</h1>
+    </div>
+
+    <div class="right_edge inline_block">
+        <div class="header_menu">
+            <ul class="header_list">
+                <li>
+                    <form action="{% url 'search_photo' %}" method="get" class="head_search">
+                        {% csrf_token %}
+                        <input type="search" placeholder="Поиск фото" name="search_photo" required="" aria-label="Search">
+                        <button type="submit">
+                            <span class="fa fa-search" aria-hidden="true"></span>
+                        </button>
+                    </form>
+                </li>
+                {% for ref in menu %}
+                <li>  
+                    {% if ref.sub1 %}
+                        <input type="checkbox" name="toggle" class="toggleSubmenu" id="{{ref.id}}">
+                        <a href="" class="header_menu_a point_cursor" id="{{ref.id}}">
+                            <i class="fa {{ref.class}} icon fa-lg" aria-hidden="true"></i> {{ref.name}}</a>
+                        <label for="{{ref.id}}" class="toggleSubmenu"><i class="fa fa-lg"></i></label>
+
+                        <ul class="sub_menu">
+                            <li>
+                                <a href="{{ref.sub1.url_name}}" class="header_menu_a" id="{{ref.sub1.id}}">
+                                    <i class="fa {{ref.sub1.class}} icon fa-lg" aria-hidden="true"></i>  {{ref.sub1.name}}</a>
+                                    
+                            </li>
+                        {% if ref.sub2 %}
+                            <li>
+                                <a href="{{ref.sub2.url_name}}" class="header_menu_a" id="{{ref.sub2.id}}">
+                                    <i class="fa {{ref.sub2.class}} icon fa-lg" aria-hidden="true"></i>  {{ref.sub2.name}}</a>
+                            </li>
+                        {% endif %}
+                        {% if ref.sub3 %}
+                            <li>
+                                <a href="{{ref.sub3.url_name}}" class="header_menu_a" id="{{ref.sub3.id}}">
+                                    <i class="fa {{ref.sub3.class}} icon fa-lg" aria-hidden="true"></i>  {{ref.sub3.name}}</a>
+                            </li>
+                        {% endif %}
+                        </ul>
+                    {% else %}
+                        <a href="{{ref.url_name}}" class="header_menu_a" id="{{ref.id}}">
+                            <i class="fa {{ref.class}} icon fa-lg" aria-hidden="true"></i>  {{ref.name}}</a>
+                </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="buttton_header_burger">
+        <div class="header_burger inline_block">
+            <span></span>
+        </div>
+    </div>
+</div>
+

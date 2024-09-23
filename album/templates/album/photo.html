@@ -1,0 +1,60 @@
+{% extends 'layout.html' %}
+{% block title %} {{title}} {% endblock %}
+{% block content %}
+    <div class="cont_page_menu">
+        <div class="page_menu">
+             ::
+            <a href="" class="filter_link">
+                <i class="fa fa-filter" aria-hidden="true"></i>
+            </a>
+             ::
+            <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
+            <a href="{% url 'show_photos_list' %}" class="page_menu_link">{{top_head}}</a>
+            <a href="{{photo.ph_album.get_absolute_url}}" class="page_menu_link">{{photo.ph_album}}</a>
+            {{head}}
+        </div>
+        <div>
+            <a href="{% url 'add_photo' %}" title="Добавить фото">
+                <div class="menu_add">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="form_center">
+        <div class="photo_box">
+            <h3>{{photo.ph_name}}</h3>
+            <hr>
+            <img src="{{photo.ph_file.url}}" class="photo">
+            <hr>
+        </div>
+
+        <div class="photo_card">
+            <div class="card_details">
+                <h4>Информация:</h4>
+                <p>Альбом: <a href="{{photo.ph_album.get_alb_url}}" class="link_item2">{{photo.ph_album}}</a></p>
+                <p><a href="{{photo.ph_album.get_absolute_url}}" class="link_item2">
+                    <i class="fa fa-file-image-o" aria-hidden="true"></i> Посмотреть фото альбома {{photo.ph_album}}
+                </a></p>
+                <p>Опубликовал: {{photo.ph_author.username}}</p>
+                <p>Дата создания: {{photo.ph_date_create|date:"d.m.Y"}}</p>
+            </div>
+            <div class="card_descr">
+                <h4>Описание: </h4>
+                <p>{{photo.ph_descr}}</p>
+                <p>
+                    <a href="" class="link_item">
+                        <i class="fa fa-pencil" aria-hidden="true"></i> Редактировать информацию о фото
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="link_photo">
+            <a href="{% url 'edit_photo' photo_slug=photo.ph_slug %}" class="link_item2">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Редактировать фото
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

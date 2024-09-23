@@ -1,0 +1,9 @@
+{% for album in albums %}
+    <a href="{% url 'get_album' alb_slug=album.a_slug %}">
+        <div class="album_menu">
+            <div class="cover_thumb"><img src="{{album.photos.last.ph_file.url}}" class=""></div>
+            <h3>{{album.a_name| truncatewords:3}} ({{album.count_photos}})</h3>
+            <p class="alb_descr">{{album.a_descr| truncatewords:12}}</p>
+        </div>
+    </a>
+{% endfor %}

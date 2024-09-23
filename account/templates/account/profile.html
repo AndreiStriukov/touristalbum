@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block content %}
+
+    <div class="form_center">
+        <div>
+            <h3>Мой профиль</h3>
+        </div>
+        <hr>
+        <div class="user_card">
+            <div class="user_left">
+                <div class="avatar_container">
+                    <img src="{{user.get_avatar_url}}" class="avatar">
+                    <h3 class="user_name">
+                        {{user.get_user_name}}
+                    </h3>
+                </div>
+                <div class="user_menu">
+                    <a href="{% url 'edit_account' %}" class="blue_button big_button">Изменить профиль</a>
+                </div>
+            </div>
+            <div class="user_properties">
+
+                <h4>Обо мне:</h4>
+                <p>Логин: {{user.username}}</p>
+                {% if user.first_name %}
+                    <p>Имя: {{user.first_name}}</p>
+                {% endif %}
+                {% if user.last_name %}
+                    <p>Фамилия: {{user.last_name}}</p>
+                {% endif %}
+                <p>Язык: {{user.user_lang}}</p>
+                <p>День рождения: {{user.birthday|date:"d.m.Y"}}</p>
+                <hr>
+                <p>Email: {{user.email}}</p>
+                <p>Скрыть Email от остальных? <i class="{{user.hide_email}}"></i></p>
+                <hr>
+                <h4>Настройки профиля:</h4>
+                <p>Отправлять сообщения? <i class="{{user.send_messages}}"></i></p>
+                <p>Дата присоединения: {{user.date_joined|date:"d.m.Y"}}</p>
+                <p><a href="">Изменить пароль</a></p>
+            </div>
+        </div>
+        <hr>
+        <div class="my_reviews">
+            <h4>Мои публикации:</h4>
+            <p><a href="{% url 'user_albums_list' user_id=user.pk %}">Мои альбомы</a></p>
+            <p><a href="{% url 'user_photo_list' user_id=user.pk %}">Мои фото</a></p>
+        </div>
+
+    </div>
+
+{% endblock %}

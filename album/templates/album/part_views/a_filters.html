@@ -1,0 +1,82 @@
+    <form action="{% url 'filter_albums_list' %}" method="get" class="filters_wrapper" name="a_filter" id="a_filter">
+        <div class="alb_filter_apply">
+            <input type="reset" id="reset_btn" value="Сброс">
+            <button>Искать</button>
+        </div>
+        <div class="alb_filters">
+            <div class="alb_filter_label" id="result1">
+                Период путешествия (<span>0</span>)
+            </div>
+            <div id="1" class="alb_filter_list_checkbox">
+                {% for album in view.get_years %}
+                    <div class="input_checkbox">
+                        <input type="checkbox" class="checked" name="year"
+                               value="{{album.j_year}}" id="year{{album.j_year}}">
+                        <label class="filters_list_item">{{album.j_year}}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="alb_filters">
+            <div class="alb_filter_label">
+                Место путешествия
+            </div>
+            <div id="2" class="alb_filter_list_checkbox">
+                    <div class="input_checkbox">
+                        <input type="search" class="checked" name="place" id="j_place">
+                    </div>
+            </div>
+        </div>
+
+        <div class="alb_filters" id="result3">
+            <div class="alb_filter_label">
+                Характер путешествия (<span>0</span>)
+            </div>
+            <div id="3" class="alb_filter_list_checkbox">
+                {% for type in view.get_types %}
+                    <div class="input_checkbox">
+                        <input type="checkbox" class="checked" name="type"
+                               value="{{type.id}}" id="type{{type.id}}">
+                        <label class="filters_list_item">{{type.j_type_name}}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="alb_filters">
+            <div class="alb_filter_label" id="result4">
+                Участники путешествия (<span>0</span>)
+            </div>
+            <div id="4" class="alb_filter_list_checkbox">
+                {% for part in view.get_participants %}
+                    <div class="input_checkbox">
+                        <input type="checkbox" class="checked" name="participants"
+                               value="{{part.id}}" id="part{{part.id}}">
+                        <label class="filters_list_item">{{part.participants}}</label>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <hr/>
+        <div class="alb_filters">
+            <div class="alb_filter_label" id="sort">
+                Сортировать
+            </div>
+
+            <div id="5" class="alb_filter_list_checkbox">
+                По дате создания альбома:
+                <div class="input_checkbox">
+                    <input type="radio" class="checked" name="order_by" id="from_new" value="-a_date_create">
+                    <label class="filters_list_item">От новых к старым</label>
+                </div>
+                <div class="input_checkbox">
+                    <input type="radio" class="checked" name="order_by" id="from_ald" value="a_date_create">
+                    <label class="filters_list_item">От старых к новым</label>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+

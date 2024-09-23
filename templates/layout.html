@@ -1,0 +1,36 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static 'touristalbum/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'touristalbum/css/filter.css' %}">
+    <link rel="stylesheet" href="{% static 'touristalbum/css/form.css' %}">
+    <link rel="stylesheet" href="{% static 'touristalbum/css/size.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="x-icon" href="{% static 'touristalbum/img/favicon.ico' %}">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="header_layout">
+            {% include 'header.html' %}
+        </div>
+
+        <div class="content_layout">
+            {% include 'part_views/login_window.html' %}
+            {% block top_content %}{% endblock %}
+            {% block content %}{% endblock %}
+        </div>
+
+        <div class="footer_layout">
+            {% include 'footer.html' %}
+        </div>
+    </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="{% static 'touristalbum/js/scripts.js' %}"></script>
+</body>
+</html>

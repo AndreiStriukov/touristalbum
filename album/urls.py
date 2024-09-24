@@ -26,3 +26,5 @@ urlpatterns = [
     path('edit_album/<slug:alb_slug>/', AlbumUpdate.as_view(), name='edit_album'),
     path('del_photo/', del_photo, name='del_photo'),
 ]
+
+# test

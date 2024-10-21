@@ -6,26 +6,29 @@
         <div class="filter_block">
            {% include 'album/part_views/a_filters.html' %}
         </div>
-        <div class="body_block" id="post_a_filter">
-            <div class="cont_page_menu">
-                <div class="page_menu">
-                     ::
-                    <a href="" class="filter_link">
-                        <i class="fa fa-filter" aria-hidden="true"></i>
+
+        <div class="body_block">
+            <div class="wrap_crud_menu">
+
+                    <div class="page_menu">
+                        <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
+                        <a href="{% url 'show_albums_list' %}" class="page_menu_link">{{top_head}}</a>
+                        {{head}}
+                    </div>
+              
+                <div class="crud_menu">
+                    <a href="" class="link_item" id="filter_link">
+                        <i class="fa fa-filter" aria-hidden="true"></i> Фильтры
                     </a>
-                     ::
-                    <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
-                    {{head}}
                 </div>
-                <div>
-                    <a href="{% url 'add_album' %}" title="Добавить альбом">
-                        <div class="menu_add">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                        </div>
+                <div class="crud_menu">
+                    <a href="{% url 'add_album' %}" class="link_item" id="filter_link">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Создать альбом
                     </a>
                 </div>
             </div>
-            <div class="wropper_cart_menu">
+
+            <div class="wropper_cart_menu"  id="post_a_filter">
                 {% include 'album/part_views/albums.html' %}
             </div>
         </div>

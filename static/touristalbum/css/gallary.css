@@ -1,0 +1,308 @@
+body, html{
+	font-family: 'Verdana', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color:#2a2c30;
+	color: #CDC8C2;
+}
+
+	.slider-container {
+		margin-top: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	
+	.main-slider {
+		width: 85%; /* Ширина основного слайдера */
+		height: 70vh; /* Фиксированная высота для основного слайдера */
+		margin-bottom: 10px; /* Отступ между слайдерами */
+		
+	}
+
+	.main-slider>div {
+		position: relative; /* Чтобы позиционировать изображения */
+	} 
+	
+	.main-slider img {
+		width: auto;
+		max-width: 100%;
+		max-height: 100%;
+		margin: auto;
+		display: block;
+		object-fit: contain; /* Масштабирование изображения, чтобы оно оставалось внутри контейнера */
+		border-radius: 20px;
+		position: absolute;
+    	overflow: hidden;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.nav-slider {
+		width: 80%; /* Ширина навигационного слайдера */
+		margin-top: 10px; /* Отступ между слайдерами */
+	}
+	
+	.nav-slider .slick-slide {
+		height: 25vh; /* Фиксированная высота для слайдов */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;  /*  Обрезаем изображение по бокам, если оно выходит за границы  */
+	}
+	
+	.nav-slider img {
+		width: 23vw;
+		height: auto;
+		object-fit: cover; /* Обрезка миниатюр, если они не соответствуют размерам */
+		cursor: pointer;
+	}
+	
+	.slick-prev, .slick-next {
+		font-size: 2em; /* Увеличиваем размер иконок стрелок */
+		width: 50px;
+		height: 50px;
+		position: absolute;
+		top: 50%; /* Располагаем стрелки по центру по вертикали */
+		transform: translateY(-50%); /* Центрируем их по вертикали */
+		z-index: 2; /* Устанавливаем стрелки выше изображений */
+		background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон для лучшей видимости */
+		border-radius: 50%;
+		color: #fff; /* Цвет стрелок */
+		padding: 5px; /* Размер стрелок */
+		font-size: 24px; /* Размер стрелок */
+	}
+	
+	.slick-prev {
+		left: 80px; /* Расстояние от левого края слайдера */
+	}
+	
+	.slick-next {
+		right: 80px; /* Расстояние от правого края слайдера */
+	}
+
+	.slick-prev::before, .slick-next::before {
+		font-size: 2em; /* Увеличиваем размер иконок */
+	}
+
+	/* бургер-меню */
+	
+	.smart-menu{
+		position: absolute;
+		top: 10px;
+		left: 10px;
+		display: flex;
+		flex-direction: column;
+		z-index: 100;
+	}
+	
+	.header {
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		margin-bottom: 15px;
+	}
+	
+	.logo {
+		margin-right: 10px;
+		font-size: 20px;
+		color: #fff;
+	}
+
+	.icon-menu{
+		margin: 15px 10px;
+		font-size: 28px;
+		width: 30px;
+		text-align: center;
+	}
+
+	.icon-ref{
+		color: #CDC8C2;
+	}
+
+	.icon-ref:hover{
+		color: #fff;
+	}
+	
+	.burger-menu-btn {
+		background: none;
+		border: none;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		padding: 8px;
+	}
+	
+	.burger-line {
+		width: 30px;
+		height: 4px;
+		background-color: #fff;
+		border-radius: 2px;
+	}
+	
+	.burger-nav {
+		display: none;
+		position: absolute;
+		top: 50px;
+		left: 10px;
+		background: #2a2c30;
+		padding: 10px 30px;
+		border-radius: 5px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+		z-index: 100;
+	}
+
+	/* Окно описания и др. свойств альбома */
+	.description{
+		display: none;
+		position: absolute;
+		top: 60px;
+		left: 70px;
+		z-index: 50;
+		width: 40vw;
+		background: #2a2c30;
+		padding: 10px 30px;
+		border-radius: 5px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+	}
+
+	/* Окно описания Фото */
+	.ph-descr{
+		display: none;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 50;
+		width: 80%;
+		background: #2a2c30;
+		padding: 10px 30px;
+		margin: 0 auto;
+		border-radius: 10px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+	}
+
+	/* кнопка открытия окна описания фото */
+	.info-photo{
+		position: absolute;
+		bottom: 50vh;
+		right: 80px;
+		z-index: 45;
+		font-size: 36px;
+	}
+
+	.info-photo i{
+		text-shadow: 3px 3px 2px black, 0 0 1em black, 0 0 0.2em black;
+	}
+
+	.close-win{
+		position: absolute;
+		top: 5px;
+		right: 5px;
+		z-index: 51px;
+		font-size: 26px;
+	}
+	
+	.burger-nav ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	.burger-nav li {
+		padding: 10px 0;
+		position: relative;
+	}
+	
+	.burger-nav a {
+		text-decoration: none;
+		color: #fff;
+		display: block;
+		transition: color 0.3s;
+	}
+	
+	.burger-nav a:hover {
+		color: #ddd;
+	}
+	
+	.has-submenu .triangle {
+		float: right;
+		transition: transform 0.3s;
+		cursor: pointer;
+	}
+	
+	.submenu {
+		display: none;
+	}
+	
+	.submenu li {
+		padding: 5px 0;
+	}
+	
+	/* Раскрытие подменю */
+	.submenu-open .submenu {
+		display: block;
+		padding-left: 25px;
+		padding-top: 10px;
+	}
+
+	/* Раскрытие окна с инфо об альбоме */
+	.description-open{
+		display: block;
+	}
+
+	/* Раскрытие окна с инфо о фото */
+	.ph-descr-open{
+		display: block;
+	}
+
+	.ref-open{
+		background-color: black;
+		padding: 5px 10px 5px 15px;
+		border-radius: 8px;
+	}
+
+	.play-on, .play-on:hover{
+		color: rgb(82, 80, 80);
+	}
+
+	.burger-nav .has-submenu .submenu-toggle {
+		font-size: 0.8em;
+		margin-left: 5px;
+		cursor: pointer; /* Указатель для интерактивности */
+		transition: transform 0.3s ease;
+		display: inline-block;
+	}
+	
+	.burger-nav .has-submenu.submenu-open .submenu-toggle {
+		transform: rotate(90deg); /* Поворот треугольника при открытом подменю */
+	}
+
+	.fa{
+		margin-right: 5px;
+	}
+
+/* Адаптация под мобильные устройства */
+
+	@media (max-width: 1024px) {
+		.nav-slider {
+			display: none; /* Скрываем навигационный слайдер на мобильных устройствах */
+		}
+
+		.slider-container{
+			margin-top: 60px;
+		}
+
+		.description{
+			width: 60vw;
+		}
+	}
+
+	@media (max-width: 600px) {
+		.description{
+			width: 75vw;
+		}
+	}
+	

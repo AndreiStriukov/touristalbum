@@ -37,3 +37,4 @@
 * **Django** (Wev Framework);
 * **PostgreSQL** (database), psycopg(адаптер базы данных PostgreSQL для Python);
 * Библиотека Django: **Pillow** для работы с изображениями
+* Библиотека Slick slider (скачано) - слайдер, используется для галереи изображений

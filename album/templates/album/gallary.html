@@ -1,0 +1,127 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" type="text/css" href="{% static 'touristalbum/slick/slick.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'touristalbum/slick/slick-theme.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'touristalbum/css/gallary.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="x-icon" href="{% static 'touristalbum/img/favicon.ico' %}">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+
+<body>
+
+    {% load album_tags %}
+    {% get_main_menu request.user as menu %}
+
+    <div class="smart-menu">
+        <div class="header">
+            <button class="burger-menu-btn" aria-label="Menu">
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+                <div class="burger-line"></div>
+            </button>
+            <div class="logo">АЛЬБОМ Туриста</div>
+        </div>
+        <div class="icon-menu">
+            <a href="#" class="icon-ref descr-ref"><i class="fa fa-info" aria-hidden="true"></i></a>
+        </div>
+        <div class="icon-menu">
+            <a href="{{photos.0.ph_album.get_absolute_url}}" class="icon-ref"><i class="fa fa-th" aria-hidden="true"></i></a>
+        </div>
+        <div class="icon-menu">
+            <a href="#" class="icon-ref play-button"><i class="fa fa-play" aria-hidden="true"></i></a>
+        </div>
+        <div class="icon-menu">
+            <a class="stop-button play-on"><i class="fa fa-stop" aria-hidden="true"></i></a>
+        </div>
+    </div>
+    
+    <nav class="burger-nav">
+        <ul>
+        {% for ref in menu %}
+            {% if ref.sub1 %}
+            <li class="has-submenu">
+                <a href="#" class="submenu-toggle-a">
+                    <i class="fa {{ref.class}} icon fa-lg" aria-hidden="true"></i> 
+                    {{ref.name}} 
+                    <span class="submenu-toggle">▶</span>
+                </a>
+                <ul class="submenu">
+                    <li>
+                        <a href="{{ref.sub1.url_name}}">
+                            <i class="fa {{ref.sub1.class}} icon fa-lg" aria-hidden="true"></i>  {{ref.sub1.name}}</a>
+                    </li>
+                {% if ref.sub2 %}
+                    <li>
+                        <a href="{{ref.sub2.url_name}}">
+                            <i class="fa {{ref.sub2.class}} icon fa-lg" aria-hidden="true"></i>  {{ref.sub2.name}}</a>
+                    </li>
+                {% endif %}
+                {% if ref.sub3 %}
+                    <li>
+                        <a href="{{ref.sub3.url_name}}">
+                            <i class="fa {{ref.sub3.class}} icon fa-lg" aria-hidden="true"></i>  {{ref.sub3.name}}</a>
+                    </li>
+                {% endif %}
+                </ul>
+            </li>
+            {% else %}
+            <li>
+                <a href="{{ref.url_name}}"><i class="fa {{ref.class}} icon fa-lg" aria-hidden="true"></i> {{ref.name}}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </nav>
+
+    <!-- Окно с информацией об альбоме -->
+    <div class="description">
+        <p><b>Альбом:</b> {{ photos.0.ph_album.a_name }}</p>
+        <p><b>Фотографий:</b> {{ photos.count }}</p>
+        <p><b>Описание:</b> {{photos.0.ph_album.a_descr}}</p>
+        <p><b>Создал:</b> {% get_username photos.0.ph_album.a_author %}</p>
+    </div>
+
+    <!-- Слайдер изображений -->
+    <div class="slider-container">
+        <div class="main-slider">
+            {%  for photo in photos %}
+                <div>
+                    <img src="{{photo.ph_file.url}}">
+                    <div class="info-photo">
+                        <a href="#" class="icon-ref"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="ph-descr">
+                        <div class="close-win">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>
+                        </div>
+                        <p><b>Фото:</b> {{photo.ph_name}}</p>
+                        <p><b>Описание:</b> {{photo.ph_descr}}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="nav-slider">
+            {%  for photo in photos %}
+                <div>
+                    <img src="{{photo.ph_file.url}}" class="img_thumb">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- подключение библиотеки slick (слайдер) -->
+    <!-- Подключаем слайдер Slick -->
+    <script type="text/javascript" src="{% static 'touristalbum/slick/slick.min.js' %}"></script>
+    <!-- Подключаем файл скриптов настройки Slick -->
+    <script src="{% static 'touristalbum/js/gallary.js' %}"></script>
+</body>
+</html>

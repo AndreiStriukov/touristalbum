@@ -4,10 +4,20 @@
             <button>Искать</button>
         </div>
         <div class="alb_filters">
+
+            <div id="f6" class="alb_filter_list_checkbox">
+
+                    <div class="input_checkbox">
+                        <input type="checkbox" class="checked" name="my_alb"
+                               value="{{user_id}}" id="user{{user_id}}">
+                        <label class="filters_list_item">Мои альбомы</label>
+                    </div>
+
+            </div>
             <div class="alb_filter_label" id="result1">
                 Период путешествия (<span>0</span>)
             </div>
-            <div id="1" class="alb_filter_list_checkbox">
+            <div id="f1" class="alb_filter_list_checkbox">
                 {% for album in view.get_years %}
                     <div class="input_checkbox">
                         <input type="checkbox" class="checked" name="year"
@@ -21,7 +31,7 @@
             <div class="alb_filter_label">
                 Место путешествия
             </div>
-            <div id="2" class="alb_filter_list_checkbox">
+            <div id="f2" class="alb_filter_list_checkbox">
                     <div class="input_checkbox">
                         <input type="search" class="checked" name="place" id="j_place">
                     </div>
@@ -32,7 +42,7 @@
             <div class="alb_filter_label">
                 Характер путешествия (<span>0</span>)
             </div>
-            <div id="3" class="alb_filter_list_checkbox">
+            <div id="f3" class="alb_filter_list_checkbox">
                 {% for type in view.get_types %}
                     <div class="input_checkbox">
                         <input type="checkbox" class="checked" name="type"
@@ -47,7 +57,7 @@
             <div class="alb_filter_label" id="result4">
                 Участники путешествия (<span>0</span>)
             </div>
-            <div id="4" class="alb_filter_list_checkbox">
+            <div id="f4" class="alb_filter_list_checkbox">
                 {% for part in view.get_participants %}
                     <div class="input_checkbox">
                         <input type="checkbox" class="checked" name="participants"
@@ -64,7 +74,7 @@
                 Сортировать
             </div>
 
-            <div id="5" class="alb_filter_list_checkbox">
+            <div id="f5" class="alb_filter_list_checkbox">
                 По дате создания альбома:
                 <div class="input_checkbox">
                     <input type="radio" class="checked" name="order_by" id="from_new" value="-a_date_create">

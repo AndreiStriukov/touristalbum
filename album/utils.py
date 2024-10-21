@@ -15,6 +15,9 @@ def album_filters(self):
     participants = self.request.GET.getlist('participants')
     types = self.request.GET.getlist('type')
     place = self.request.GET.get('place')
+    user_id = self.kwargs.get('user_id')
+
+    print('user_id = ' + str(user_id))
 
     filters = Q(a_is_active=True)
     if years:
@@ -23,6 +26,8 @@ def album_filters(self):
         filters &= Q(travel_participants__in=participants)
     if types:
         filters &= Q(j_type__in=types)
+    if user_id:
+        filters &= Q(a_author__id=user_id)
     if place:
         filters &= q_search(place)
 

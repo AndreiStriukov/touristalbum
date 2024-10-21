@@ -1,4 +1,5 @@
 from re import search
+from typing import Any
 
 from django.views.generic import ListView, DetailView, CreateView
 from album.services import *
@@ -31,12 +32,17 @@ class HomePage(AlbumList, ListView):
 class AlbumListView(AlbumList, AlbFilters, ListView):
     """ Просмотр альбомов с окном фильтрации и сортировки """
     template_name = 'album/album_list.html'
-    qty = 0
+    qty = 0 # выводить все записи
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        user_id = self.kwargs.get('user_id')
         context['title'] = 'Альбом туриста. Просмотр альбомов'
-        context['head'] = 'Альбомы'
+        context['top_head'] = 'Альбомы'
+        if user_id:
+            context['head'] = "Мои"
+        else:
+            context['head'] = "Все"
         return context
 
 
@@ -48,24 +54,25 @@ class FilterAlbumListView(AlbumList, ListView):
     qty = 0
 
 
-class UserAlbumListView(ListView):
-    model = Photo
+# class UserAlbumListView(ListView, AlbFilters):
+#     """ Просмотр альбомов пользователя """
+#     model = Photo
 
-    context_object_name = 'albums'
-    template_name = 'album/album_list.html'
-    pk_url_kwarg = 'user_id'
+#     context_object_name = 'albums'
+#     template_name = 'album/album_list.html'
+#     pk_url_kwarg = 'user_id'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Альбом туриста. Альбомы участника ' + str(self.request.user.username)
-        context['head'] = 'Альбомы: ' + str(self.request.user.username)
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Альбом туриста. Альбомы участника ' + str(self.request.user.username)
+#         context['head'] = 'Альбомы: ' + str(self.request.user.username)
+#         return context
 
-    def get_queryset(self):
-        user_id = self.kwargs.get('user_id')
-        filters = Q(a_author__id=user_id)
-        albums = album_list(0, filters)
-        return albums
+#     def get_queryset(self):
+#         # user_id = self.kwargs.get('user_id')
+#         filters = album_filters(self)
+#         albums = album_list(0, filters)
+#         return albums
 
 
 class UserPhotoListView(ListView):
@@ -78,7 +85,9 @@ class UserPhotoListView(ListView):
         context = super().get_context_data(**kwargs)
 
         context['title'] = 'Альбом туриста. Фотографии участника ' + str(self.request.user.username)
-        context['head'] = 'Фотографии: ' + str(self.request.user.username)
+        context['head'] = 'Фотографии'
+        context['user_photo'] = str(self.request.user.username)
+        context['user_id'] = str(self.request.user.pk)
         return context
 
     def get_queryset(self):
@@ -143,6 +152,28 @@ class PhotoView(DetailView):
         context['top_head'] = 'Фотографии'
         context['head'] = 'Фотография'
         return context
+    
+
+class GallaryView(ListView):
+    model = Photo
+    template_name = 'album/gallary.html'
+    context_object_name = 'photos'
+    slug_url_kwarg = "alb_slug"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Галерея'
+        return context
+    
+    def get_queryset(self):
+        alb_slug = self.kwargs.get(self.slug_url_kwarg)
+
+        filters = Q(ph_is_active=True)
+        if alb_slug:
+            filters &= Q(ph_album__a_slug=alb_slug)
+        photos = Photo.objects.filter(filters).select_related('ph_album')
+
+        return photos
 
 
 class SearchPhoto(ListView):

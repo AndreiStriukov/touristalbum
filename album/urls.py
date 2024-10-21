@@ -10,11 +10,12 @@ urlpatterns = [
 
     path('albums/', AlbumListView.as_view(), name='show_albums_list'),
     path('albums/filters', FilterAlbumListView.as_view(), name='filter_albums_list'),
-    path('albums/user/<int:user_id>/', UserAlbumListView.as_view(), name='user_albums_list'),
+    path('albums/user/<int:user_id>/', AlbumListView.as_view(), name='user_albums_list'),
     path('album/<slug:alb_slug>', AlbumView.as_view(), name='get_album'),
 
     path('photo/', PhotoListView.as_view(), name='show_photos_list'),
     path('show_album/<slug:alb_slug>', PhotoListView.as_view(), name='show_album_photo'),
+    path('gallery/<slug:alb_slug>', GallaryView.as_view(), name='gallery'),
     path('photo/<slug:photo_slug>', PhotoView.as_view(), name='get_photo'),
     path('photos/user/<int:user_id>/', UserPhotoListView.as_view(), name='user_photo_list'),
     path('photos/search/', SearchPhoto.as_view(), name='search_photo'),
@@ -27,4 +28,3 @@ urlpatterns = [
     path('del_photo/', del_photo, name='del_photo'),
 ]
 
-# test

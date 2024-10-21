@@ -7,7 +7,7 @@
     <!-- includede 'album/filters.html'-->
     </div>
     <div class="body_block">
-        <div class="cont_page_menu">
+        <div class="wrap_crud_menu">
             <div class="page_menu">
                 {% if alb_slug %}
                     <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
@@ -15,14 +15,23 @@
                      {{head}} {{ photos.0.ph_album.a_name }}
                 {% else %}
                     <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
-                    {{head}}
+                    {% if user_photo %}
+                        <a href="{% url 'show_photos_list' %}" class="page_menu_link">{{head}}</a>
+                        {{head}}: {{user_photo}}
+                    {% else %}
+                        {{head}}
+                    {% endif %}
+                    
                 {% endif %}
             </div>
-            <div>
-                <a href="{% url 'add_photo' %}" title="Добавить фото">
-                    <div class="menu_add">
-                        <i class="fa fa-download" aria-hidden="true"></i>
-                    </div>
+
+            <div class="page_menu">
+                Найдено фото: {{photos.count}}
+            </div>
+
+            <div class="crud_menu">
+                <a href="{% url 'add_photo' %}" class="link_item">
+                    <i class="fa fa-download" aria-hidden="true"></i> Добавить фото
                 </a>
             </div>
         </div>
@@ -32,9 +41,16 @@
                 <div class="post_center">
                     <div class="crud_menu">
                         <a href="{% url 'get_album' alb_slug=photos.0.ph_album.a_slug %}" class="link_item">
-                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Перейти к альбому
+                            <i class="fa fa-caret-square-o-down" aria-hidden="true"></i> Подробнее об альбоме
                         </a>
                     </div>
+
+                    <div class="crud_menu">
+                        <a href="{% url 'gallery' alb_slug=photos.0.ph_album.a_slug %}" class="link_item">
+                            <i class="fa  fa-picture-o" aria-hidden="true"></i> Галерея
+                        </a>
+                    </div>
+
                     <p><b>Альбом:</b> {{ photos.0.ph_album.a_name }}</p>
                     <p><b>Описание:</b> {{photos.0.ph_album.a_descr}}</p>
                     <p><b>Создал:</b>
@@ -46,6 +62,7 @@
         {% endif %}
 
         <div class="wropper_photo_menu">
+            
             {%  for photo in photos %}
                 <div class="photo_menu">
                     <div class="photo_item">

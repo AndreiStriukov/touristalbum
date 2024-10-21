@@ -299,6 +299,23 @@
 	  width: 330px;
 	}
 
+	.crud_menu{
+		margin-top: 15px;
+		margin-bottom: 8px;
+	}
+	.wrap_crud_menu{
+		width: 300px;
+		text-align: center;
+	}
+
+	.page_menu{
+		margin-top: 20px;
+	}
+
+	.album_properties{
+		margin: 10px;
+	}
+
 }
 
 @media screen and (max-width:400px){

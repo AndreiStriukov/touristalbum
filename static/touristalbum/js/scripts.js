@@ -1,5 +1,20 @@
 $(document).ready(function(){
 
+    $('div.main_text').hide().show(1500);
+
+    
+    // отображение кнопок управления формой при задании фильтрации непосредственно в элементе фильтрации
+    function button_vis(event){
+        $('#a_filter').find('.alb_filter_apply').remove();
+        $(this).parents('.alb_filter_list_checkbox').after(search_button);
+    }
+
+    var search_button = $('.alb_filter_apply').clone();
+
+    $('#j_place').keyup(button_vis);
+    $('.checked').change(button_vis);
+
+
     //Сворачивание/разворачивание элементов
 
     $('.header_burger').click(function(event){
@@ -10,7 +25,7 @@ $(document).ready(function(){
 
 
     // Окно фильтра
-    $(".filter_link").click(function(event){
+    $("#filter_link").click(function(event){
         event.preventDefault();
         $('.filter_block').toggleClass('active');
     })
@@ -24,13 +39,13 @@ $(document).ready(function(){
     // Подсчет количества выбранных чекбоксов и обнуление при кнопке "Сбросить"
 
     $('#a_filter input:checkbox').click(function(){ 
-        var count1 = $('#1 :checkbox:checked').length;
+        var count1 = $('#f1 :checkbox:checked').length;
         $('#result1 span').html(count1);
 
-        var count3 = $('#3 :checkbox:checked').length;
+        var count3 = $('#f3 :checkbox:checked').length;
         $('#result3 span').html(count3);
 
-        var count4 = $('#4 :checkbox:checked').length;
+        var count4 = $('#f4 :checkbox:checked').length;
         $('#result4 span').html(count4); 
     }); 
     
@@ -42,6 +57,7 @@ $(document).ready(function(){
 
     // Отпрвка формы
 
+    // var form_filter = $("#a_filter");
     var form_filter = $("#a_filter");
     form_filter.on('submit', function(event){
         event.preventDefault();
@@ -50,6 +66,10 @@ $(document).ready(function(){
         // console.log(params);
 
         $.get(url, params, function(data){
+            if ($(window).width() <= '820'){
+                $('.filter_block').toggleClass('active');
+            }
+            $('#filter_link').toggleClass('yellow');
             $('#post_a_filter').html(data);
         })
         

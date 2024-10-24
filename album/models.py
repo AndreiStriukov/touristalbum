@@ -34,6 +34,7 @@ class JourneyAlbum(models.Model):
 
 class Photo(models.Model):
     ph_file = models.ImageField(upload_to='img/photos', verbose_name='Файл')
+    ph_thumbnail = models.ImageField(upload_to='img/photos/thumbnails', verbose_name='Миниатюра', blank=True, null=True)
     ph_name = models.CharField(max_length=36, verbose_name='Имя фото')
     ph_slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Имя фото в адресной строке')
     ph_descr = models.TextField(blank=True, null=True, verbose_name='Описание фото, эмоции')
@@ -54,6 +55,39 @@ class Photo(models.Model):
             output_size = (1200, 1200)
             ph.thumbnail(output_size)
             ph.save(self.ph_file.path)
+
+        # Создание миниатюры
+        self.create_thumbnail()
+
+        # Сохранение модели еще раз с обновленным полем ph_thumbnail
+        super().save(*args, **kwargs)
+
+    def create_thumbnail(self):
+        thumb_size = (300, 300)
+        thumb_image = Image.open(self.ph_file.path)
+
+        # Создаем уменьшенную версию с сохранением пропорций
+        thumb_image.thumbnail(thumb_size)
+
+        # Путь для сохранения миниатюры
+        thumb_name, thumb_extension = os.path.splitext(self.ph_file.name)
+        thumb_extension = thumb_extension.lower()
+
+        # Определяем путь к директории 'thumbnails'
+        thumbnail_dir = os.path.join(os.path.dirname(self.ph_file.path), 'thumbnails')
+
+        # Создаем директорию, если она не существует
+        if not os.path.exists(thumbnail_dir):
+            os.makedirs(thumbnail_dir)
+
+        # Путь для миниатюры в директории 'thumbnails'
+        thumb_path = os.path.join(thumbnail_dir, f'{os.path.basename(thumb_name)}_thumb{thumb_extension}')
+
+        # Сохранение миниатюры
+        thumb_image.save(thumb_path)
+
+        # Обновляем поле миниатюры в модели с относительным путем
+        self.ph_thumbnail = os.path.join('img/photos/thumbnails', f'{os.path.basename(thumb_name)}_thumb{thumb_extension}')
 
     def get_absolute_url(self):
         return reverse('get_photo', kwargs={'photo_slug': self.ph_slug})

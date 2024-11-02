@@ -3,6 +3,8 @@ from django.urls import reverse
 from PIL import Image
 from account.models import AdvUser, Lang
 
+import os
+
 
 class JourneyAlbum(models.Model):
     a_name = models.CharField(max_length=32, verbose_name='Имя альбома')
@@ -49,29 +51,31 @@ class Photo(models.Model):
         return self.ph_name
 
     def save(self, *args, **kwargs):
-        super().save()
+        super().save(*args, **kwargs)
+
+        # Открытие и обработка основного изображения
         ph = Image.open(self.ph_file.path)
         if ph.width > 1200 or ph.height > 1200:
             output_size = (1200, 1200)
             ph.thumbnail(output_size)
             ph.save(self.ph_file.path)
 
-        # Создание миниатюры
-        self.create_thumbnail()
-
-        # Сохранение модели еще раз с обновленным полем ph_thumbnail
-        super().save(*args, **kwargs)
-
-    def create_thumbnail(self):
-        thumb_size = (300, 300)
-        thumb_image = Image.open(self.ph_file.path)
-
-        # Создаем уменьшенную версию с сохранением пропорций
-        thumb_image.thumbnail(thumb_size)
-
-        # Путь для сохранения миниатюры
+        # Получение имени файла и расширения в нижнем регистре
         thumb_name, thumb_extension = os.path.splitext(self.ph_file.name)
         thumb_extension = thumb_extension.lower()
+
+        # Создаем миниатюру
+        self.create_thumbnail(ph, thumb_name, thumb_extension)
+
+        # Сохранение модели с обновленным полем ph_thumbnail
+        super().save(*args, **kwargs)
+
+    def create_thumbnail(self, ph, thumb_name, thumb_extension):
+        thumb_size = (300, 300)
+
+        # Создаем уменьшенную версию с сохранением пропорций
+        thumb_image = ph.copy()  # Копируем оригинал, чтобы не изменять его
+        thumb_image.thumbnail(thumb_size)
 
         # Определяем путь к директории 'thumbnails'
         thumbnail_dir = os.path.join(os.path.dirname(self.ph_file.path), 'thumbnails')
@@ -89,8 +93,6 @@ class Photo(models.Model):
         # Обновляем поле миниатюры в модели с относительным путем
         self.ph_thumbnail = os.path.join('img/photos/thumbnails', f'{os.path.basename(thumb_name)}_thumb{thumb_extension}')
 
-    def get_absolute_url(self):
-        return reverse('get_photo', kwargs={'photo_slug': self.ph_slug})
 
     class Meta:
         ordering = ['-ph_date_create']

@@ -1,40 +1,69 @@
-# ![](static/touristalbum/img/favicon.ico) АЛЬБОМ Туриста
-## Оглавление
-1. [Функционал](#Функционал)
-2. [Инструменты](#Инструменты)
+# ![](static/touristalbum/img/favicon.ico) WorldSNAP
+## Contents
+1. [About the website](#About-the-website)
+2. [App Functionality](#App-Functionality)
+3. [Tools](#Tools)
+4. [Development Plans](#Development-Plans)
 
-## Функционал
-Сайт (проект) состоит из 2-х приложений:
-1. account - функционал управления аккаунтами пользователей
-2. album - функционал управления созданными альбомами и публикуемыми фотографиями
+## About the website
 
-### Приложение account
-Приложение позволяет:
-- Регистрацию пользователя с капчей (_**TBD**_) и подтверждением через почту;
-- Восстановление пароля
-- Авторизацию пользователя;
-- Просмотр профиля пользователя;
-- Изменение профиля пользователя, включая аватар;
-- Изменение пароля (_**TBD**_)
-- Удаление профиля (_**TBD**_)
+WorldSnap is a platform for travelers to share their memories and emotions from trips. 
 
-### Приложение album
-Приложение позволяет:
-- Создавать альбом;
-- Просмотр списка альбомов с возможностью фильтрации;
-- Просмотр информации об альбоме;
-- Изменение свойств альбома;
-- Публикацию фото в привязке к альбому
-- Просмотр фотографий в выбранном альбоме;
-- Просмотр списка фотографий
-- Поиск фотографий
-- Редактирование свойств фотографии 
-с возможностью изменения общего доступа для просмотра фото
-- Удаление фото (_**TBD**_)
+Travel enthusiasts can create albums, upload photos, and share their experiences about the places they've visited and the trips they've taken.
 
-## Инструменты
-* **Python** (3.12);
-* **Django** (Wev Framework);
-* **PostgreSQL** (database), psycopg(адаптер базы данных PostgreSQL для Python);
-* Библиотека Django: **Pillow** для работы с изображениями
-* Библиотека Slick slider (скачано) - слайдер, используется для галереи изображений
+Visitors can freely browse photo albums, but registration is required to upload photos and create albums.
+
+## App Functionality
+
+The website (project) consists of 2 applications (modules):
+1. account - functionality for managing user accounts
+2. album - functionality for managing created albums and published photos
+
+### Account Module
+
+The module allows users to:
+
+* Register with email confirmation;
+* Log in and out securely;
+* Recover the password;
+* In the personal account:
+    + View and edit the profile;
+    + Change the avatar;
+    + Change the password.
+
+
+### Album Module
+
+The module allows users to:
+
+* Perform actions with albums:
+    + View a list of albums with filtering options;
+    + View information about an album;
+    + Create an album;
+    + Edit album properties;
+* Perform actions with photos:
+    + View photos:
+        - in a gallery;
+        - in a selected album;
+        - as a general list;
+    + Search for photos;
+    + Publish photos linked to an album;
+    + Edit a photo properties.
+
+## Tools
+1. **Python** (3.12);
+2. **Django** (Wev Framework);
+3. **PostgreSQL** (database), psycopg (PostgreSQL database adapter for Python);
+4. Django library: Pillow for image processing;
+5. Slick slider library (downloaded) - a slider used for the image gallery.
+
+## Development Plans
+
+1. Add a captcha for a new user registration;
+2. Change password functionality;
+3. Deleting a profile;;
+4. Pagination for viewing photos;
+5. Deleting a photo;
+6. Photo rating by visitors;
+7. Album privacy settings (public/private);
+8. Multilingual functionality.

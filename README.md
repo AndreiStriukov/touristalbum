@@ -13,7 +13,15 @@ Travel enthusiasts can create albums, upload photos, and share their experiences
 
 Visitors can freely browse photo albums, but registration is required to upload photos and create albums.
 
-## App Functionality
+## Website Functionality
+
+The homepage has a unified layout for both registered users and guests. It features a brief description of the website and displays the latest albums, allowing visitors to dive into new travel experiences and stories.
+
+![](static/touristalbum/img//screens/homepage_ru.png)
+
+![](static/touristalbum/img//screens/homepage_sm_ru.png)
+
+![](static/touristalbum/img//screens/menu_sm_ru.png)
 
 The website (project) consists of 2 applications (modules):
 1. account - functionality for managing user accounts
@@ -30,6 +38,8 @@ The module allows users to:
     + View and edit the profile;
     + Change the avatar;
     + Change the password.
+
+![](static/touristalbum/img//screens/account_ru.png)
 
 
 ### Album Module
@@ -49,6 +59,10 @@ The module allows users to:
     + Search for photos;
     + Publish photos linked to an album;
     + Edit a photo properties.
+
+![](static/touristalbum/img//screens/albums_ru.png)
+
+![](static/touristalbum/img//screens/gallery_ru.png)
 
 ## Tools
 1. **Python** (3.12);

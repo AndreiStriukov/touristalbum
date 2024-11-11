@@ -13,12 +13,12 @@ def get_main_menu(user):
             {'name': "Альбомы", 'class': 'fa-folder-open', 'id': '1',
             'sub1': {'name': "Все альбомы", 'url_name': get_url_menu('show_albums_list'), 'id': '11', 'class': 'fa-folder-open'},
             'sub2': {'name': "Мои альбомы", 'url_name': get_url_menu('user_albums_list', user.id), 'id': '12', 'class': 'fa-address-book-o'},
-            'sub3': {'name': "Создать альбом", 'url_name': get_url_menu('add_photo'), 'id': '13', 'class': 'fa-plus'}
+            'sub3': {'name': "Создать альбом", 'url_name': get_url_menu('add_album'), 'id': '13', 'class': 'fa-plus'}
             },
             {'name': "Фото", 'class': 'fa-file-image-o', 'id': '2',
             'sub1': {'name': "Все фото", 'url_name': get_url_menu('show_photos_list'), 'id': '21', 'class': 'fa-file-image-o'},
             'sub2': {'name': "Мои фото", 'url_name': get_url_menu('user_photo_list', user.id), 'id': '22', 'class': 'fa-camera'},
-            'sub3': {'name': "Загрузить фото", 'url_name': get_url_menu('add_album'), 'id': '23', 'class': 'fa-download'}
+            'sub3': {'name': "Загрузить фото", 'url_name': get_url_menu('add_photo'), 'id': '23', 'class': 'fa-download'}
             },
             {'name': "Профиль", 'class': 'fa-user', 'id': '3',
             'sub1': {'name': user.username, 'url_name': get_url_menu('profile', user.id), 'id': '31', 'class': ' fa-address-card-o'},

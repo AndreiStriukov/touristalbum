@@ -1,9 +1,10 @@
+{% load i18n %}
 {% load album_tags %}
 {% get_main_menu request.user as menu %}
 <div class="header_body">
     <div class="logo inline_block">
         <a href="{% url 'index' %}" class="site_logo"><h1 class="site_logo"></h1></a>
-        <h1 class="site_name">АЛЬБОМ Туриста</h1>
+        <h1 class="site_name">WorldSNAP</h1>
     </div>
 
     <div class="right_edge inline_block">
@@ -18,6 +19,7 @@
                         </button>
                     </form>
                 </li>
+                <!-- Меню -->
                 {% for ref in menu %}
                 <li>  
                     {% if ref.sub1 %}
@@ -51,6 +53,28 @@
                 </li>
                     {% endif %}
                 {% endfor %}
+                <!-- Выбор языка -->
+                <li>
+                    <button class="dropbtn">
+                        <i class="fa fa-globe" aria-hidden="true"></i> {{ LANGUAGE_CODE|upper }}
+                    </button>
+                    <div class="dropdown-content">
+                        {% get_current_language as LANGUAGE_CODE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% get_language_info_list for LANGUAGES as languages %}
+                        
+                        {% for language in languages %}
+                            <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ request.path }}">
+                                <input name="language" type="hidden" value="{{ language.code }}">
+                                <button type="submit">
+                                    {{ language.name_local }} ({{ language.code|upper }})
+                                </button>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

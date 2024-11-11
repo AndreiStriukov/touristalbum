@@ -3,12 +3,14 @@ from django.urls import reverse
 from PIL import Image
 from account.models import AdvUser, Lang
 
+from slugify import slugify
+
 import os
 
 
 class JourneyAlbum(models.Model):
-    a_name = models.CharField(max_length=32, verbose_name='Имя альбома')
-    a_slug = models.SlugField(max_length=32, unique=True, db_index=True, verbose_name='Имя альбома в адресной строке')
+    a_name = models.CharField(max_length=80, verbose_name='Имя альбома')
+    a_slug = models.SlugField(max_length=80, unique=True, db_index=True, verbose_name='Имя альбома в адресной строке')
     j_month = models.PositiveSmallIntegerField(default=1, verbose_name='Месяц путешествия')
     j_year = models.PositiveSmallIntegerField(default=2024, verbose_name='Год путешествия')
     j_place = models.CharField(max_length=64, verbose_name='Место путешествия')
@@ -23,6 +25,11 @@ class JourneyAlbum(models.Model):
 
     def __str__(self):
         return self.a_name
+    
+    def save(self, *args, **kwargs):
+        if not self.a_slug:
+            self.a_slug = slugify(self.a_name)
+        super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse('show_album_photo', kwargs={'alb_slug': self.a_slug})
@@ -37,7 +44,7 @@ class JourneyAlbum(models.Model):
 class Photo(models.Model):
     ph_file = models.ImageField(upload_to='img/photos', verbose_name='Файл')
     ph_thumbnail = models.ImageField(upload_to='img/photos/thumbnails', verbose_name='Миниатюра', blank=True, null=True)
-    ph_name = models.CharField(max_length=36, verbose_name='Имя фото')
+    ph_name = models.CharField(max_length=80, verbose_name='Имя фото')
     ph_slug = models.SlugField(max_length=255, unique=True, db_index=True, verbose_name='Имя фото в адресной строке')
     ph_descr = models.TextField(blank=True, null=True, verbose_name='Описание фото, эмоции')
     ph_album = models.ForeignKey('JourneyAlbum', on_delete=models.PROTECT, verbose_name='Альбом',
@@ -51,6 +58,11 @@ class Photo(models.Model):
         return self.ph_name
 
     def save(self, *args, **kwargs):
+
+        # автозаполнение слага
+        if not self.ph_slug:
+            self.ph_slug = slugify(self.ph_name)
+
         super().save(*args, **kwargs)
 
         # Открытие и обработка основного изображения
@@ -92,6 +104,9 @@ class Photo(models.Model):
 
         # Обновляем поле миниатюры в модели с относительным путем
         self.ph_thumbnail = os.path.join('img/photos/thumbnails', f'{os.path.basename(thumb_name)}_thumb{thumb_extension}')
+
+    def get_absolute_url(self):
+        return reverse('get_photo', kwargs={'photo_slug': self.ph_slug})
 
 
     class Meta:

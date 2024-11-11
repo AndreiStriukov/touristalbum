@@ -68,8 +68,9 @@ The module allows users to:
 1. **Python** (3.12);
 2. **Django** (Wev Framework);
 3. **PostgreSQL** (database), psycopg (PostgreSQL database adapter for Python);
-4. Django library: Pillow for image processing;
-5. Slick slider library (downloaded) - a slider used for the image gallery.
+4. Django library: **Pillow** for image processing;
+5. Django library: **Slick slider** (downloaded) - a slider used for the image gallery.
+6. Django library: **Python-slugify** for converting strings into a format suitable for use in URLs (slugs).
 
 ## Development Plans
 

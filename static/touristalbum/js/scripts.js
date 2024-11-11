@@ -2,6 +2,21 @@ $(document).ready(function(){
 
     $('div.main_text').hide().show(1500);
 
+    // Выпадающий список для выбора языка
+    // Открыть/закрыть выпадающий список при клике
+
+    $('.dropbtn').click(function() {
+        setTimeout(function() {
+            $(this).siblings('.dropdown-content').toggleClass('show');
+          }.bind(this), 100);  // Используем bind, чтобы сохранить контекст
+    });
+    
+    // Закрыть список, если кликнули в другом месте
+    $(window).click(function(event) {
+        if (!$(event.target).closest('.dropdown').length) {
+            $('.dropdown-content').removeClass('show');
+    }
+    });
     
     // отображение кнопок управления формой при задании фильтрации непосредственно в элементе фильтрации
     function button_vis(event){

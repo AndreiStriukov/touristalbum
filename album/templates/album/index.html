@@ -1,20 +1,18 @@
 {% extends 'layout.html' %}
-
+{% load i18n %}
 {% block title %} {{title}} {% endblock %}
 {% block top_content %}
+
     <div class="main_img">
         <img src="/media/img/index/cap_index.png" class="main_img">
         <div class="main_text">
             <div>
-                <h2>О сайте</h2>
+                <h2>{% translate 'About the site' %}</h2>
                 <p class="main_text">
-                    На сайте "Альбом туриста" предоставлена возможность поделиться своими воспоминаниями
-                    и эмоциями о путешествиях, полученными во время путешествий.
+                    {% blocktrans %}The website "WorldSNAP" provides an opportunity to share your memories and emotions about travels received during travels.{% endblocktrans %}
                 </p>
                 <p class="main_text">
-                    Создавайте альбомы путешествий и публикуйте в альбомах свои фотографии.
-                    Поделитесь впечатлениями о местах где находились. Расскажите какой компанией отдыхали.
-                    Наслаждайтесь своими воспоминаниями и удивляйтесь воспоминаниям других.
+                    {% blocktrans %}Create travel albums and publish your photos in the albums. Share your impressions of the places you have been. Tell us what company you were with. Enjoy your memories and be surprised by the memories of others.{% endblocktrans %}
                 </p>
             </div>
 

@@ -156,6 +156,68 @@ select {
 		display: none;
 	}
 
+	/* Выбор языка */
+
+	/* Стили для кнопки */
+	.dropbtn {
+		background-color: #4CAF50;
+		color: white;
+		padding: 5px 10px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+		border-radius: 5px;
+	}
+
+	/* Контейнер для выпадающего списка */
+	.dropdown {
+		position: relative;
+		display: inline-block;
+	}
+
+	/* Скрываем выпадающий контент по умолчанию */
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		background-color: #f9f9f9;
+		min-width: 160px;
+		box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+		z-index: 1;
+		top: 45px;
+		border-radius: 5px;
+	}
+
+	/* Стили для кнопок в выпадающем списке */
+	.dropdown-content button {
+		background-color: #f9f9f9;
+		color: black;
+		padding: 12px 16px;
+		width: 100%;
+		text-align: left;
+		border: none;
+		cursor: pointer;
+		display: block;
+		border-radius: 5px;
+		font-size: 16px;
+	}
+
+	/* При наведении меняем цвет кнопки */
+	.dropdown-content button:hover {
+		background-color: #f1f1f1;
+	}
+
+	/* Стилизуем активную кнопку */
+	.dropdown:hover .dropbtn {
+		background-color: #3e8e41;
+	}
+
+	/* Показываем выпадающий список при наведении */
+	.dropdown-content.show {
+		display: block;
+	}
+
+  
+
 /*  --- END HEAD ELEMENTS---  */
 
 

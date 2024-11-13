@@ -348,7 +348,7 @@ select {
 	.head_search input{
 		position: absolute;
 		display: block;
-		top: -6px;
+		top: -12px;
 		right: 0px;
 		line-height: 25px;
 		outline:0;
@@ -360,7 +360,7 @@ select {
 
 	.head_search button{
 		position: absolute;
-		top: -6px;
+		top: -12px;
 		right: 0px;
 		background-image: none; 
 		background: transparent;

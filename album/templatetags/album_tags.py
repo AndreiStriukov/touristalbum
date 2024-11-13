@@ -1,48 +1,76 @@
+import json
 from django import template
 from django.shortcuts import get_object_or_404
 from album.models import *
 
+from django.utils.translation import get_language
+
 register = template.Library()
 
 
-@register.simple_tag()
-def get_main_menu(user):
-    if user.id:
-        main_menu = [
-            {'name': "Главная", 'url_name': get_url_menu('index'), 'class': 'fa-home'},
-            {'name': "Альбомы", 'class': 'fa-folder-open', 'id': '1',
-            'sub1': {'name': "Все альбомы", 'url_name': get_url_menu('show_albums_list'), 'id': '11', 'class': 'fa-folder-open'},
-            'sub2': {'name': "Мои альбомы", 'url_name': get_url_menu('user_albums_list', user.id), 'id': '12', 'class': 'fa-address-book-o'},
-            'sub3': {'name': "Создать альбом", 'url_name': get_url_menu('add_album'), 'id': '13', 'class': 'fa-plus'}
-            },
-            {'name': "Фото", 'class': 'fa-file-image-o', 'id': '2',
-            'sub1': {'name': "Все фото", 'url_name': get_url_menu('show_photos_list'), 'id': '21', 'class': 'fa-file-image-o'},
-            'sub2': {'name': "Мои фото", 'url_name': get_url_menu('user_photo_list', user.id), 'id': '22', 'class': 'fa-camera'},
-            'sub3': {'name': "Загрузить фото", 'url_name': get_url_menu('add_photo'), 'id': '23', 'class': 'fa-download'}
-            },
-            {'name': "Профиль", 'class': 'fa-user', 'id': '3',
-            'sub1': {'name': user.username, 'url_name': get_url_menu('profile', user.id), 'id': '31', 'class': ' fa-address-card-o'},
-            'sub2': {'name': "Выйти", 'url_name': get_url_menu('logout'), 'id': '32', 'class': 'fa-sign-out'},
-            },
-        ]
-    else:
-        main_menu = [
-            {'name': "Главная", 'url_name': get_url_menu('index'), 'class': 'fa-home'},
-            {'name': "Альбомы", 'url_name': get_url_menu('show_albums_list'), 'class': 'fa-folder-open', 'id': '1'},
-            {'name': "Фото", 'url_name': get_url_menu('show_photos_list'), 'class': 'fa-file-image-o', 'id': '2'},
-            {'name': "Войти", 'class': 'fa-sign-in', 'id': '3',
-            'sub1': {'name': "Войти", 'url_name': '#', 'id': 'window', 'class': 'fa-sign-in'},
-            'sub2': {'name': "Присоединиться", 'url_name': get_url_menu('registration'), 'id': '32', 'class': 'fa-sign-in'},
-            },
-        ]
-    return main_menu
+# Переделка на JSON
 
 def get_url_menu(link, param=None):
+    """Функция для генерации URL. Если передан параметр, он используется в URL."""
+    if link == '#':  # Проверка на ссылку-заглушку
+        return '#'
+    
     if param:
         return reverse(link, kwargs={'user_id': param})
     else:
         return reverse(link)
 
+@register.simple_tag()
+def load_menu_json(user=None):
+    """Загрузка меню для пользователя или гостя."""
+    # Загрузка JSON структуры
+    with open('menu/menu_structure.json', 'r', encoding='utf-8') as structure_file:
+        menu_data = json.load(structure_file)
+    
+    # Определение меню для авторизованного пользователя или гостя
+    if user and user.id:
+        menu_structure = menu_data.get('main_menu_user', [])
+    else:
+        menu_structure = menu_data.get('main_menu_guest', [])
+    
+    # Определение текущего языка
+    current_lang = get_language()
+    language_files = {
+        'ru': 'menu/menu_ru.json',
+        'en': 'menu/menu_en.json',
+    }
+
+    language_file = language_files.get(current_lang, 'menu/menu_en.json')
+    with open(language_file, 'r', encoding='utf-8') as text_file:
+        menu = json.load(text_file)
+
+    # Объединение структуры и текстов
+    for i, item in enumerate(menu_structure):
+        item['name'] = menu['main_menu_user'][i]['name'] if user and user.id else menu['main_menu_guest'][i]['name']
+        
+        # Генерация ссылок через get_url_menu, пропуская элементы с '#'
+        if 'url_name' in item:
+            if item['url_name'] == '#':
+                item['url_name'] = '#'
+            elif '{user_id}' in item['url_name'] and user:
+                item['url_name'] = item['url_name'].replace('{user_id}', str(user.id))
+                item['url_name'] = get_url_menu(item['url_name'], user.id)
+            else:
+                item['url_name'] = get_url_menu(item['url_name'])
+        
+        # Обработка подменю
+        for sub_key in ['sub1', 'sub2', 'sub3']:
+            if sub_key in item:
+                item[sub_key]['name'] = menu['main_menu_user'][i][sub_key]['name'] if user and user.id else menu['main_menu_guest'][i][sub_key]['name']
+                if item[sub_key]['url_name'] == '#':
+                    item[sub_key]['url_name'] = '#'
+                elif '{user_id}' in item[sub_key]['url_name'] and user:
+                    item[sub_key]['url_name'] = item[sub_key]['url_name'].replace('{user_id}', str(user.id))
+                    item[sub_key]['url_name'] = get_url_menu(item[sub_key]['url_name'], user.id)
+                else:
+                    item[sub_key]['url_name'] = get_url_menu(item[sub_key]['url_name'])
+
+    return menu_structure
 
 
 @register.simple_tag(name='get_username')

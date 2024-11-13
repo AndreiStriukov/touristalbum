@@ -1,0 +1,30 @@
+{
+    "main_menu_user": [
+        {"url_name": "index", "class": "fa-home"},
+        {"class": "fa-folder-open", "id": "1",
+        "sub1": {"url_name": "show_albums_list", "id": "11", "class": "fa-folder-open"},
+        "sub2": {"url_name": "user_albums_list/{user.id}" , "id": "12", "class": "fa-address-book-o"},
+        "sub3": {"url_name": "add_album", "id": "13", "class": "fa-plus"}
+        },
+        {"class": "fa-file-image-o", "id": "2",
+        "sub1": {"url_name": "show_photos_list", "id": "21", "class": "fa-file-image-o"},
+        "sub2": {"url_name": "user_photo_list/{user.id}", "id": "22", "class": "fa-camera"},
+        "sub3": {"url_name": "add_photo", "id": "23", "class": "fa-download"}
+        },
+        {"class": "fa-user", "id": "3",
+        "sub1": {"url_name": "profile/{user.id}", "id": "31", "class": " fa-address-card-o"},
+        "sub2": {"url_name": "logout", "id": "32", "class": "fa-sign-out"}
+        }
+    ],
+
+    "main_menu_guest": [
+        {"url_name": "index", "class": "fa-home"},
+        {"url_name": "show_albums_list", "class": "fa-folder-open", "id": "1"},
+        {"url_name": "show_photos_list", "class": "fa-file-image-o", "id": "2"},
+        {"class": "fa-sign-in", "id": "3",
+        "sub1": {"url_name": "#", "id": "window", "class": "fa-sign-in"},
+        "sub2": {"url_name": "registration", "id": "32", "class": "fa-sign-in"}
+        }
+    ]
+}
+

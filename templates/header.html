@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load album_tags %}
-{% get_main_menu request.user as menu %}
+{% load_menu_json request.user as menu %}
 <div class="header_body">
     <div class="logo inline_block">
         <a href="{% url 'index' %}" class="site_logo"><h1 class="site_logo"></h1></a>
@@ -13,7 +13,7 @@
                 <li>
                     <form action="{% url 'search_photo' %}" method="get" class="head_search">
                         {% csrf_token %}
-                        <input type="search" placeholder="Поиск фото" name="search_photo" required="" aria-label="Search">
+                        <input type="search" placeholder="{% translate 'Search photos' %}" name="search_photo" required="" aria-label="Search">
                         <button type="submit">
                             <span class="fa fa-search" aria-hidden="true"></span>
                         </button>

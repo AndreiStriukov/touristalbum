@@ -1,4 +1,5 @@
 {% extends 'layout.html' %}
+{% load i18n %}
 {% block title %} {{title}} {% endblock %}
 
 {% block content %}
@@ -11,19 +12,19 @@
             <div class="wrap_crud_menu">
 
                     <div class="page_menu">
-                        <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
+                        <a href="{% url 'index' %}" class="page_menu_link">{% trans 'Home' %}</a>
                         <a href="{% url 'show_albums_list' %}" class="page_menu_link">{{top_head}}</a>
                         {{head}}
                     </div>
               
                 <div class="crud_menu">
                     <a href="" class="link_item" id="filter_link">
-                        <i class="fa fa-filter" aria-hidden="true"></i> Фильтры
+                        <i class="fa fa-filter" aria-hidden="true"></i> {% trans 'Filters' %}
                     </a>
                 </div>
                 <div class="crud_menu">
                     <a href="{% url 'add_album' %}" class="link_item" id="filter_link">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Создать альбом
+                        <i class="fa fa-plus" aria-hidden="true"></i> {% trans 'Create Album' %}
                     </a>
                 </div>
             </div>

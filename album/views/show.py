@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView, CreateView
 from album.services import *
 from album.utils import *
 
+from django.utils.translation import gettext_lazy as _
 
 class AlbumList:
     """ Вывод списка альбомов на страницу """
@@ -25,7 +26,7 @@ class HomePage(AlbumList, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'АЛЬБОМ Туриста. Главная страница'
+        context['title'] = "WorldSNAP. _('Home')"
         return context
 
 
@@ -37,7 +38,7 @@ class AlbumListView(AlbumList, AlbFilters, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user_id = self.kwargs.get('user_id')
-        context['title'] = 'Альбом туриста. Просмотр альбомов'
+        context['title'] = 'WorldSNAP. Просмотр альбомов'
         context['top_head'] = 'Альбомы'
         if user_id:
             context['head'] = "Мои"
@@ -54,27 +55,6 @@ class FilterAlbumListView(AlbumList, ListView):
     qty = 0
 
 
-# class UserAlbumListView(ListView, AlbFilters):
-#     """ Просмотр альбомов пользователя """
-#     model = Photo
-
-#     context_object_name = 'albums'
-#     template_name = 'album/album_list.html'
-#     pk_url_kwarg = 'user_id'
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title'] = 'Альбом туриста. Альбомы участника ' + str(self.request.user.username)
-#         context['head'] = 'Альбомы: ' + str(self.request.user.username)
-#         return context
-
-#     def get_queryset(self):
-#         # user_id = self.kwargs.get('user_id')
-#         filters = album_filters(self)
-#         albums = album_list(0, filters)
-#         return albums
-
-
 class UserPhotoListView(ListView):
     model = JourneyAlbum
     context_object_name = 'photos'
@@ -84,8 +64,8 @@ class UserPhotoListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['title'] = 'Альбом туриста. Фотографии участника ' + str(self.request.user.username)
-        context['head'] = 'Фотографии'
+        context['title'] = 'WorldSNAP. Фотографии участника ' + str(self.request.user.username)
+        context['head'] = _('Photos')
         context['user_photo'] = str(self.request.user.username)
         context['user_id'] = str(self.request.user.pk)
         return context
@@ -106,9 +86,9 @@ class AlbumView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Альбом туриста. Альбом'
-        context['top_head'] = 'Альбомы'
-        context['head'] = 'Альбом'
+        context['title'] = 'WorldSNAP. Альбом'
+        context['top_head'] = _('Albums')
+        context['head'] = _('Album')
         return context
 
 
@@ -122,7 +102,7 @@ class PhotoListView(AlbFilters, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Альбом туриста. Просмотр фотографий'
+        context['title'] = 'WorldSNAP. Просмотр фотографий'
         context['alb_slug'] = self.kwargs.get(self.slug_url_kwarg)
         context['top_head'] = 'Альбомы'
         context['head'] = 'Фотографии'
@@ -148,7 +128,7 @@ class PhotoView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Альбом туриста. Просмотр фотографии'
+        context['title'] = 'WorldSNAP. Просмотр фотографии'
         context['top_head'] = 'Фотографии'
         context['head'] = 'Фотография'
         return context

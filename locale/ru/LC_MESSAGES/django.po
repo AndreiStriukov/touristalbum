@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-11 05:18+0000\n"
+"POT-Creation-Date: 2024-11-12 18:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -56,70 +56,54 @@ msgstr ""
 msgid "The %(site_name)s team"
 msgstr ""
 
+#: album/templates/album/album_list.html:15
+msgid "Home"
+msgstr "Главная"
+
+#: album/templates/album/album_list.html:22
+msgid "Filters"
+msgstr "Фильтры"
+
+#: album/templates/album/album_list.html:27
+msgid "Create Album"
+msgstr "Создать альбом"
+
 #: album/templates/album/index.html:10
 msgid "About the site"
 msgstr "О сайте"
 
 #: album/templates/album/index.html:12
 msgid ""
-"The website \"WorldSNAP\" provides an opportunity to share your memories "
-"and emotions about travels received during travels."
+"The website \"WorldSNAP\" provides an opportunity to share your memories and "
+"emotions about travels received during travels."
 msgstr ""
 "Сайт \"WorldSNAP\" предоставляет возможность поделиться своими "
 "воспоминаниями и эмоциями о путешествиях, полученными во время путешествий."
 
 #: album/templates/album/index.html:15
 msgid ""
-"Create travel albums and publish your photos in the albums. "
-"Share your impressions of the places you have been. Tell us what company you were with. "
+"Create travel albums and publish your photos in the albums. Share your "
+"impressions of the places you have been. Tell us what company you were with. "
 "Enjoy your memories and be surprised by the memories of others."
 msgstr ""
 "Создавайте альбомы путешествий и публикуйте в альбомах свои фотографии. "
-"Поделитесь впечатлениями о местах где находились. Расскажите какой компанией отдыхали."
-"Наслаждайтесь своими воспоминаниями и удивляйтесь воспоминаниям других."
+"Поделитесь впечатлениями о местах где находились. Расскажите какой компанией "
+"отдыхали.Наслаждайтесь своими воспоминаниями и удивляйтесь воспоминаниям "
+"других."
 
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:7
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:220
-msgid "The install worked successfully! Congratulations!"
-msgstr ""
+#: album/views/show.py:68
+msgid "Photos"
+msgstr "Фотографии"
 
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:206
-#, python-format
-msgid ""
-"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
-"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
-msgstr ""
+#: album/views/show.py:90
+msgid "Albums"
+msgstr "Альбомы"
 
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:221
-#, python-format
-msgid ""
-"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
-"%(version)s/ref/settings/#debug\" target=\"_blank\" "
-"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
-"configured any URLs."
-msgstr ""
+#: album/views/show.py:91
+msgid "Album"
+msgstr "Альбом"
 
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:229
-msgid "Django Documentation"
-msgstr ""
-
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:230
-msgid "Topics, references, &amp; how-to’s"
-msgstr ""
-
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:238
-msgid "Tutorial: A Polling App"
-msgstr ""
-
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:239
-msgid "Get started with Django"
-msgstr ""
-
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:247
-msgid "Django Community"
-msgstr ""
-
-#: venv/lib/python3.12/site-packages/django/views/templates/default_urlconf.html:248
-msgid "Connect, get help, or contribute"
-msgstr ""
+#: templates/header.html:16
+msgid "Search photos"
+msgstr "Поиск фото"
 

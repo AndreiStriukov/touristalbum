@@ -1,0 +1,6 @@
+{
+    "album_list": [
+        {"name": "Home", "url_name": "index"},
+        {"name": "Albums", "url_name": "show_albums_list"}
+    ]
+}

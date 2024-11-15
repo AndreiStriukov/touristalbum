@@ -1,8 +1,11 @@
 {% extends 'layout.html' %}
 {% load i18n %}
+{% load menu_tags %}
+
 {% block title %} {{title}} {% endblock %}
 
 {% block content %}
+{% get_breadcrumbs_menu request.user 'album_list' as menu %}
   <div class="wrap_body">
         <div class="filter_block">
            {% include 'album/part_views/a_filters.html' %}
@@ -11,11 +14,12 @@
         <div class="body_block">
             <div class="wrap_crud_menu">
 
-                    <div class="page_menu">
-                        <a href="{% url 'index' %}" class="page_menu_link">{% trans 'Home' %}</a>
-                        <a href="{% url 'show_albums_list' %}" class="page_menu_link">{{top_head}}</a>
-                        {{head}}
-                    </div>
+                <div class="page_menu">
+                    {% for ref in menu %}
+                        <a href="{{ref.url_name}}" class="page_menu_link">{{ref.name}}</a>
+                    {% endfor %}
+                    {{head}}
+                </div>
               
                 <div class="crud_menu">
                     <a href="" class="link_item" id="filter_link">

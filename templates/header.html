@@ -1,6 +1,6 @@
 {% load i18n %}
-{% load album_tags %}
-{% load_menu_json request.user as menu %}
+{% load menu_tags %}
+{% get_main_menu request.user as menu %}
 <div class="header_body">
     <div class="logo inline_block">
         <a href="{% url 'index' %}" class="site_logo"><h1 class="site_logo"></h1></a>

@@ -1,30 +1,15 @@
 {
-    "main_menu_user": [
-        {"name": "Home"},
-        {"name": "Albums", 
-        "sub1": {"name": "All Albums"},
-        "sub2": {"name": "My Albums"},
-        "sub3": {"name": "Create Album"}
-        },
-        {"name": "Photos",
-        "sub1": {"name": "All Photos"},
-        "sub2": {"name": "My Photos"},
-        "sub3": {"name": "Upload Photo"}
-        },
-        {"name": "Profile", 
-        "sub1": {"name": "{username}"},
-        "sub2": {"name": "Logout"}
-        }
-    ],
-
-    "main_menu_guest": [
-        {"name": "Home"},
-        {"name": "Albums"},
-        {"name": "Photo"},
-        {"name": "Login", 
-        "sub1": {"name": "Login"},
-        "sub2": {"name": "Join"}
-        }
-    ]
+    "Home": "Home",
+    "Albums": "Albums", 
+    "All Albums": "All Albums",
+    "My Albums": "My Albums",
+    "Create Album": "Create Album",
+    "Photos": "Photos",
+    "All Photos": "All Photos",
+    "My Photos": "My Photos",
+    "Upload Photo": "Upload Photo",
+    "Profile": "Profile", 
+    "Logout": "Logout",
+    "Login": "Login", 
+    "Join us": "Join us"   
 }
-

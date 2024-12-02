@@ -2,5 +2,10 @@
     "album_list": [
         {"name": "Home", "url_name": "index"},
         {"name": "Albums", "url_name": "show_albums_list"}
+    ],
+
+    "photo_list": [
+        {"name": "Home", "url_name": "index"},
+        {"name": "Photos", "url_name": "show_photos_list"}
     ]
 }

@@ -13,16 +13,16 @@ from django.http import HttpResponse
 from django.contrib import messages, auth
 from django.http import JsonResponse
 
+from django.utils.translation import gettext_lazy as _
+
 from .forms import *
 from .utils import *
 from .models import *
 
 
 class AccountView(LoginRequiredMixin, DetailView):
+    """ Profile View """
 
-    """
-    Представление для просмотра профиля
-    """
     model = AdvUser
     context_object_name = 'account_detail'
     pk_url_kwarg = 'user_id'
@@ -36,7 +36,9 @@ class AccountView(LoginRequiredMixin, DetailView):
             user_name = str(account.first_name) + ' ' + str(account.last_name)
         else:
             user_name = str(account.username)
-        context['title'] = 'Альбом туриста. Профиль пользователя ' + user_name
+        context['title'] = _('User profile of') + ' ' + user_name
+        context['head'] = _('My profile')
+        context['button'] = _('Change my profile')
         return context
 
 
@@ -63,10 +65,9 @@ class LoginView(View):
                         return JsonResponse(
                             data={
                                 'status': 202,
-                                'error': 'Регистрация не завершена, т.к. нет подтверждения! <br>'
-                                         + '<i class="fa fa-envelope-open-o" aria-hidden="true"></i> '
-                                         + 'Пожалуйста проверьте свою почту'
-                                         + 'чтобы продолжить регистрацию.'
+                                'error': _('Registration is not complete because there is no confirmation!')
+                                         + '<br><i class="fa fa-envelope-open-o" aria-hidden="true"></i> '
+                                         + _('Please check your email to continue registration.')
                             },
                             status=200
                         )
@@ -74,8 +75,8 @@ class LoginView(View):
                     return JsonResponse(
                         data={
                             'status': 203,
-                            'error': 'Не удается идентифицировать пользователя. <br>'
-                                     + 'Проверьте вводимые email и пароль'
+                            'error': _('Unable to identify user.') + '<br>'
+                                     + _('Please check the email and password you entered.')
                         },
                         status=200
                     )
@@ -83,7 +84,7 @@ class LoginView(View):
                 return JsonResponse(
                     data={
                         'status': 204,
-                        'error': 'Не задан пароль или логин!'
+                        'error': _('Password or login not set!')
                     },
                     status=200
                 )
@@ -91,7 +92,7 @@ class LoginView(View):
             return JsonResponse(
                 data={
                     'status': 400,
-                    'error': 'Пользователь уже авторизован'
+                    'error': _('The user is already authorized')
                 },
                 status=200
             )
@@ -115,14 +116,14 @@ class RegisterView(CreateView):
             form.save()
             auth.login(self.request, user)
 
-        send_email_for_verify(self.request, user)  # в утилитах
+        send_email_for_verify(self.request, user)  # in utilities
         return redirect(self.success_url)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Создайте профиль. Присоединяйтесь к АЛЬБОМ Туриста'
-        context['head'] = 'Добро пожаловать! Присоединяйтесь'
-        context['button'] = 'Создать профиль'
+        context['title'] = _('Create your profile. Join us.')
+        context['head'] = _('Welcome! Join us!')
+        context['button'] = _('Create Profile')
         return context
 
 
@@ -131,7 +132,7 @@ class EmailVerify(View):
         user = self.get_user(uidb64)
         if user is not None and token_generator.check_token(user, token):
             user.email_verify = True
-            user.save()  # нужно сохранить пользователя
+            user.save()  # need to save user
             login(request, user)
             return redirect('profile', user_id=user.pk)
         return redirect('invalid_verify')
@@ -154,9 +155,9 @@ def edit_account(request):
     account = AdvUser.objects.get(pk=user_pk)
 
     context = {
-        'title': request.user.username + '. Изменение профиля. Альбом туриста',
-        'head': 'Изменение профиля',
-        'button': 'Изменить',
+        'title': request.user.username + '. ' + _('Changing the profile.'),
+        'head': _('Changing my profile'),
+        'button': _('Change'),
         'top_head': request.user.username,
     }
 
@@ -167,7 +168,7 @@ def edit_account(request):
         if u_form.is_valid():
             u_form.save()
             p_form.save()
-            messages.success(request, f'Ваш профиль был успешно обновлен.')
+            messages.success(request, _('Your profile has been updated successfully.'))
             return redirect('profile', user_id=user_pk)
     else:
         u_form = UpdateUserForm(instance=request.user)

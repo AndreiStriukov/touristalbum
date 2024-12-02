@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load menu_tags %}
 
-{% block title %} {{title}} {% endblock %}
+{% block title %} {{ site_name }} {{title}} {% endblock %}
 
 {% block content %}
 {% get_breadcrumbs_menu request.user 'album_list' as menu %}

@@ -58,6 +58,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
+                'album.core.context_processors.site_name',
                 'account.context_processor.get_context_data',
             ],
         },
@@ -103,6 +104,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+SITE_NAME = "WorldSNAP"
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -122,10 +125,6 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# LANGUAGES = [
-#     ('en', 'English'),
-#     ('ru', 'Русский'),
-# ]
 
 gettext = lambda s: s
 LANGUAGES = (

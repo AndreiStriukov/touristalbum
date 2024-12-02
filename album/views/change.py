@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, UpdateView, CreateView
 from django.urls import reverse_lazy
 
+from django.utils.translation import gettext_lazy as _
+
 from album.forms import *
 
 
@@ -10,7 +12,7 @@ class AddPhoto(LoginRequiredMixin, CreateView):
     form_class = AddPhotoForm
     template_name = 'album/add_photo.html'
     extra_context = {
-        'title': 'Добавление фотографии. АЛЬБОМ Туриста',
+        'title': 'Добавление фотографии.',
         'head': 'Добавление фотографии',
         'button': 'Добавить фото',
     }
@@ -19,21 +21,6 @@ class AddPhoto(LoginRequiredMixin, CreateView):
         user = self.request.user.pk
         return reverse_lazy('user_photo_list', kwargs={'user_id': user})
 
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['alb_slug'] = self.kwargs['alb_slug']
-    #     return context
-
-    # def get_initial(self, *args, **kwargs):
-    #     # Get the initial dictionary from the superclass method
-    #     initial = super(AddPhoto, self).get_initial(**kwargs)
-    #     # Copy the dictionary so we don't accidentally change a mutable dict
-    #     initial = initial.copy()
-    #     slug = self.kwargs['alb_slug']
-    #     initial['ph_name'] = slug
-    #     initial['ph_album'] = JourneyAlbum.objects.filter(a_slug=slug)
-    #     print(initial['ph_album'])
-    #     return initial
 
     def get_initial(self):
         initial = super().get_initial()
@@ -56,9 +43,9 @@ class AddAlbum(LoginRequiredMixin, CreateView):
     form_class = AddAlbum
     model = Photo
     extra_context = {
-        'title': 'Создание альбома. АЛЬБОМ Туриста',
-        'head': 'Создание альбома',
-        'button': 'Создать альбом',
+        'title': _('Creating an Album.'),
+        'head': _('Creating an Album'),
+        'button': _('Create Album'),
     }
 
     def get_success_url(self):

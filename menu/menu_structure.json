@@ -20,7 +20,7 @@
     "main_menu_guest": [
         {"name": "Home", "url_name": "index", "class": "fa-home"},
         {"name": "Albums", "url_name": "show_albums_list", "class": "fa-folder-open", "id": "1"},
-        {"name": "Photo", "url_name": "show_photos_list", "class": "fa-file-image-o", "id": "2"},
+        {"name": "Photos", "url_name": "show_photos_list", "class": "fa-file-image-o", "id": "2"},
         {"name": "Login", "class": "fa-sign-in", "id": "3",
         "sub1": {"name": "Login", "url_name": "#", "id": "window", "class": "fa-sign-in"},
         "sub2": {"name": "Join us", "url_name": "registration", "id": "32", "class": "fa-sign-in"}

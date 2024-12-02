@@ -110,18 +110,35 @@ def ph_count(alb):
 
 @register.simple_tag(name='get_alb_access')
 def alb_access(var_access):
-    """    Отображение доступа к альбому   """
-    if var_access:
-        ico = "fa-unlock"
-        text = 'Открытый доступ'
-    else:
-        ico = "fa-lock"
-        text = 'Приватный доступ'
+    """Отображение доступа к альбому в зависимости от языка"""
+    # Словари текстов для каждого языка
+    access_text_by_lang = {
+        'ru': {True: 'Общий доступ', False: 'Личный доступ'},
+        'en': {True: 'Public access', False: 'Private access'}
+    }
+
+    current_lang = get_language()
+    # Выбираем словарь для текущего языка или используем английский по умолчанию
+    access_text = access_text_by_lang.get(current_lang, access_text_by_lang['en'])
+
+    ico = "fa-unlock" if var_access else "fa-lock"
+    text = access_text[var_access]
+
     return ico, text
 
 @register.simple_tag(name='in_month')
 def mon(num):
     """    Определить месяц по его номеру   """
-    months = {1: 'в январе', 2: 'в феврале', 3: 'в марте', 4: 'в апреле', 5: 'в мае', 6: 'в июне', 7: 'в июле',
-              8: 'в августе', 9: 'в сентябре', 10: 'в октябре', 11: 'в ноябре', 12: 'в декабре'}
-    return months[num]
+
+    current_lang = get_language()
+    
+    months_by_lang = {
+        'ru': {1: 'в январе', 2: 'в феврале', 3: 'в марте', 4: 'в апреле', 5: 'в мае', 6: 'в июне', 7: 'в июле',
+               8: 'в августе', 9: 'в сентябре', 10: 'в октябре', 11: 'в ноябре', 12: 'в декабре'},
+        'en': {1: 'in January', 2: 'in February', 3: 'in March', 4: 'in April', 5: 'in May', 6: 'in June', 7: 'in July',
+               8: 'in August', 9: 'in September', 10: 'in October', 11: 'in November', 12: 'in December'}
+    }
+
+    months = months_by_lang.get(current_lang, months_by_lang['en'])
+
+    return months.get(num, 'Invalid month')

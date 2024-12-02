@@ -8,7 +8,7 @@ from album.utils import *
 from django.utils.translation import gettext_lazy as _
 
 class AlbumList:
-    """ Вывод списка альбомов на страницу """
+    """ Displaying a list of albums on a page """
     model = JourneyAlbum
     context_object_name = 'albums'
 
@@ -20,35 +20,36 @@ class AlbumList:
 
 
 class HomePage(AlbumList, ListView):
-    """ Главная страница """
+    """ Home page """
     template_name = 'album/index.html'
     qty = 6
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = "WorldSNAP. _('Home')"
+        context['title'] = _('Home page')
         return context
 
 
 class AlbumListView(AlbumList, AlbFilters, ListView):
-    """ Просмотр альбомов с окном фильтрации и сортировки """
+    """ View albums with filtering and sorting window """
     template_name = 'album/album_list.html'
-    qty = 0 # выводить все записи
+    qty = 0 # display all records
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user_id = self.kwargs.get('user_id')
-        context['title'] = 'WorldSNAP. Просмотр альбомов'
-        context['top_head'] = 'Альбомы'
+
+        context['title'] = _('View albums')
+        context['top_head'] = _('Albums')
         if user_id:
-            context['head'] = "Мои"
+            context['head'] = _('Mine')
         else:
-            context['head'] = "Все"
+            context['head'] = _('All')
         return context
 
 
 class FilterAlbumListView(AlbumList, ListView):
-    """" Представление для вывода альбомов по заданным значениям фильтров и сортировки """
+    """" View for displaying albums by specified filter and sort values """
     model = JourneyAlbum
     context_object_name = 'albums'
     template_name = 'album/part_views/albums.html'
@@ -64,7 +65,8 @@ class UserPhotoListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        context['title'] = 'WorldSNAP. Фотографии участника ' + str(self.request.user.username)
+        # Фотографии участника
+        context['title'] = _('Photos of ') + str(self.request.user.username)
         context['head'] = _('Photos')
         context['user_photo'] = str(self.request.user.username)
         context['user_id'] = str(self.request.user.pk)
@@ -94,7 +96,7 @@ class AlbumView(DetailView):
 
 class PhotoListView(AlbFilters, ListView):
     """
-        Представление для вывода фотографий с фильтраций и сортировкой.
+        View for displaying photos with filters and sorting.
     """
     model = Photo
     context_object_name = 'photos'
@@ -102,10 +104,11 @@ class PhotoListView(AlbFilters, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'WorldSNAP. Просмотр фотографий'
+        
+        context['title'] = _('View photos')
         context['alb_slug'] = self.kwargs.get(self.slug_url_kwarg)
-        context['top_head'] = 'Альбомы'
-        context['head'] = 'Фотографии'
+        context['top_head'] = _('Albums')
+        context['head'] = _('Photos')
         return context
 
     def get_queryset(self):
@@ -128,9 +131,9 @@ class PhotoView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'WorldSNAP. Просмотр фотографии'
-        context['top_head'] = 'Фотографии'
-        context['head'] = 'Фотография'
+        context['title'] = _('View photo')
+        context['top_head'] = _('Photos')
+        context['head'] = _('Photo')
         return context
     
 
@@ -142,7 +145,7 @@ class GallaryView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Галерея'
+        context['title'] = _('Gallery')
         return context
     
     def get_queryset(self):
@@ -163,8 +166,9 @@ class SearchPhoto(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Поиск фото по названию'
-        context['head'] = 'Результаты поиска фото'
+
+        context['title'] = _('Search photos by name')
+        context['head'] = _('Photo search results')
         return context
 
     def get_queryset(self):

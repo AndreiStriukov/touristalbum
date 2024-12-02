@@ -1,30 +1,37 @@
 {% extends 'layout.html' %}
-{% block title %} {{title}} {{ album.a_name }} {% endblock %}
+{% load i18n %}
+{% block title %} {{ site_name }} {{title}} {{ album.a_name }} {% endblock %}
+
 {% block content %}
+
 {% load album_tags %}
+{% load menu_tags %}
+{% get_breadcrumbs_menu request.user 'album_list' as menu %}
+
     <div class="body_block">
         
 
         <div class="wrap_crud_menu">
             <div class="page_menu"> <!-- Меню "хлебные крошки" -->
-                    <a href="{% url 'index' %}" class="page_menu_link">Главная</a>
-                    <a href="{% url 'show_albums_list' %}" class="page_menu_link">{{top_head}}</a>
-                        {{head}} {{ album.a_name }}
+                {% for ref in menu %}
+                    <a href="{{ref.url_name}}" class="page_menu_link">{{ref.name}}</a>
+                {% endfor %}
+                {{head}} {{ album.a_name }}
             </div>
 
             <div class="crud_menu">
                 <a href="{% url 'add_album_photo' alb_slug=album.a_slug %}" class="link_item">
-                    <i class="fa fa-download" aria-hidden="true"></i> Добавить фото
+                    <i class="fa fa-download" aria-hidden="true"></i> {% translate 'Upload Photo' %}
                 </a>
             </div>
             <div class="crud_menu">
                 <a href="{% url 'edit_album' alb_slug=album.a_slug %}" class="link_item">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Редактировать альбом
+                    <i class="fa fa-pencil" aria-hidden="true"></i> {% translate 'Edit album' %}
                 </a>
             </div>
             <div class="crud_menu">
                 <a href="{% url 'add_album' %}" class="link_item" id="filter_link">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Создать альбом
+                    <i class="fa fa-plus" aria-hidden="true"></i> {% translate 'Create Album' %}
                 </a>
             </div>
         </div>
@@ -50,19 +57,19 @@
                             {% if ph_count > 0 %}
                                 <a href="{{ album.get_absolute_url }}" class="link_item">
                                     <i class="fa fa-file-image-o" aria-hidden="true"></i>
-                                    Просмотр фото ({{ph_count}})</a>
+                                    {% translate 'View photos' %} ({{ph_count}})</a>
                             {% else %}
-                                <i class="link_item"> В альбоме нет фото </i>
+                                <i class="link_item"> {% translate 'There are no photos in the album' %} </i>
                             {% endif %}
                         </div>
                         <div class="crud_menu">
                             {% get_photo_count album as ph_count %}
                             {% if ph_count > 0 %}
                                 <a href="{% url 'gallery' alb_slug=album.a_slug %}" class="link_item">
-                                    <i class="fa  fa-picture-o" aria-hidden="true"></i> Галерея
+                                    <i class="fa  fa-picture-o" aria-hidden="true"></i> {% translate 'Gallery' %}
                                 </a>
                             {% else %}
-                                <i class="link_item"> В альбоме нет фото </i>
+                                <i class="link_item"> {% translate 'There are no photos in the album' %} </i>
                             {% endif %}
                         </div>
                     </div>
@@ -74,32 +81,32 @@
                         </div>
                         <div class="album_properties">
                             <p class="alb_prop_icon"><i class="fa fa-calendar" aria-hidden="true"></i></p>
-                            Путешествие<br>
+                            {% translate 'Journey' %}: <br>
                             {% in_month album.j_month %} {{album.j_year}}
                         </div>
                         <div class="album_properties">
                             <p class="alb_prop_icon"><i class="fa fa-users" aria-hidden="true"></i></p>
-                            Участники путешествия: <br> {{album.travel_participants}}
+                            {% translate 'Journey participants' %}: <br> {{album.travel_participants}}
                         </div>
                         <div class="album_properties">
                             <p class="alb_prop_icon"><i class="fa fa-ship" aria-hidden="true"></i></p>
-                            Характер путешествия: <br> {{album.j_type}}</div>
+                            {% translate 'Journey type' %}: <br> {{album.j_type}}</div>
                         <div class="album_properties">
                             <p class="alb_prop_icon"><i class="fa fa-user-o" aria-hidden="true"></i></p>
-                            Создал: <br>
+                            {% translate 'Created by' %}: <br>
                             {% get_username album.a_author %}
                         </div>
                         <div class="album_properties">
                             <p class="alb_prop_icon"><i class="fa fa-clock-o" aria-hidden="true"></i></p>
-                            <p>Создан: {{album.a_date_create|date:"d.m.Y"}}</p>
-                            <p>Изменен: {{album.a_date_update|date:"d.m.Y"}}</p>
+                            <p>{% translate 'Created' %}: {{album.a_date_create|date:"d.m.Y"}}</p>
+                            <p>{% translate 'Changed' %}: {{album.a_date_update|date:"d.m.Y"}}</p>
                         </div>
                     </div>
 
                 </div>
                 <div class="album_about">
                     <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                    Описание:<br> {{album.a_descr}}
+                    {% translate 'Description' %}:<br> {{album.a_descr}}
                 </div>
             </div>
         </div>

@@ -1,8 +1,10 @@
+{% load i18n %}
+
 <div class="cd-user-modal">
     <div class="cd-user-modal-container">
 
         <form action="{% url 'login' %}" method="post" class="form_center login_form" id="login_form">
-            <h2>Вход</h2>
+            <h2>{% translate 'Login' %}</h2>
             <div class="form_message message_non"></div>
 
             {% csrf_token %}
@@ -15,13 +17,13 @@
             </div>
 
             <div class="forgot_link">
-                <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+                <p><a href="{% url 'password_reset' %}">{% translate 'Forgot your password?' %}</a></p>
             </div>
-            <button type="submit" class="big_button blue_button">Войти</button>
+            <button type="submit" class="big_button blue_button">{% translate 'Login' %}</button>
         </form>
         <div class="register_link">
-            <p>Не зарегистрированы?<a href="{% url 'registration' %}">
-                Присоединяйтесь <i class="fa fa-sign-in" aria-hidden="true"></i>
+            <p>{% translate 'Not registered?' %}<a href="{% url 'registration' %}">
+                {% translate 'Join us' %} <i class="fa fa-sign-in" aria-hidden="true"></i>
             </a></p>
         </div>
     </div>

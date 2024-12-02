@@ -10,13 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="shortcut icon" type="x-icon" href="{% static 'touristalbum/img/favicon.ico' %}">
     <title>
-        {% block title %}{% endblock %}
+        {% block title %}{{ site_name }}{% endblock %}
     </title>
 </head>
 
 <body>
 
-    {% load album_tags %}
+    {% load menu_tags %}
     {% get_main_menu request.user as menu %}
 
     <div class="smart-menu">
@@ -26,7 +26,7 @@
                 <div class="burger-line"></div>
                 <div class="burger-line"></div>
             </button>
-            <div class="logo">АЛЬБОМ Туриста</div>
+            <div class="logo">WorldSNAP</div>
         </div>
         <div class="icon-menu">
             <a href="#" class="icon-ref descr-ref"><i class="fa fa-info" aria-hidden="true"></i></a>
@@ -81,6 +81,7 @@
     </nav>
 
     <!-- Окно с информацией об альбоме -->
+    {% load album_tags %}
     <div class="description">
         <p><b>Альбом:</b> {{ photos.0.ph_album.a_name }}</p>
         <p><b>Фотографий:</b> {{ photos.count }}</p>

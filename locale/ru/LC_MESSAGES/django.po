@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-12 18:24+0000\n"
+"POT-Creation-Date: 2024-12-01 21:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,17 +20,205 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
+#: account/forms.py:15
+msgid "January"
+msgstr "Январь"
+
+#: account/forms.py:16
+msgid "February"
+msgstr "Февраль"
+
+#: account/forms.py:17
+msgid "March"
+msgstr "Март"
+
+#: account/forms.py:18
+msgid "April"
+msgstr "Апрель"
+
+#: account/forms.py:19
+msgid "May"
+msgstr "Май"
+
+#: account/forms.py:20
+msgid "June"
+msgstr "Июнь"
+
+#: account/forms.py:21
+msgid "July"
+msgstr "Июль"
+
+#: account/forms.py:22
+msgid "August"
+msgstr "Август"
+
+#: account/forms.py:23
+msgid "September"
+msgstr "Сентябрь"
+
+#: account/forms.py:24
+msgid "October"
+msgstr "Октябрь"
+
+#: account/forms.py:25
+msgid "November"
+msgstr "Ноябрь"
+
+#: account/forms.py:26
+msgid "December"
+msgstr "Декабрь"
+
+#: account/forms.py:33 account/forms.py:60
+msgid "Password"
+msgstr "Пароль"
+
+#: account/forms.py:50
+msgid "Authorization error"
+msgstr "Ошибка авторизации"
+
+#: account/forms.py:56 account/templates/account/profile.html:29
+msgid "Username"
+msgstr "Логин"
+
+#: account/forms.py:62
+msgid "Confirm password"
+msgstr "Подтверждение пароля"
+
+#: account/forms.py:67 account/forms.py:75
+#: account/templates/account/profile.html:36
+msgid "Language"
+msgstr "Язык"
+
+#: account/forms.py:67 account/forms.py:75
+msgid "Send messages"
+msgstr "Отправлять сообщения"
+
+#: account/forms.py:74
+msgid "First name"
+msgstr "Имя"
+
+#: account/forms.py:74
+msgid "Last name"
+msgstr "Фамилия"
+
+#: account/forms.py:74 account/templates/account/profile.html:37
+msgid "Birthday"
+msgstr "День рождения"
+
+#: account/forms.py:75
+msgid "Do not display email"
+msgstr "Не отображать email"
+
+#: account/forms.py:78
+msgid "year"
+msgstr "год"
+
+#: account/forms.py:78
+msgid "month"
+msgstr "месяц"
+
+#: account/forms.py:78
+msgid "day"
+msgstr "число"
+
+#: account/forms.py:83
+msgid "Current"
+msgstr "Текущий"
+
+#: account/forms.py:84
+msgid "Select image"
+msgstr "Выберите изображение"
+
+#: account/forms.py:85
+msgid "Clear"
+msgstr "Очистить"
+
+#: account/forms.py:86
+#: account/templates/account/widgets/clearable_file_input.html:21
+msgid "File not selected"
+msgstr "Файл не выбран"
+
+#: account/forms.py:90
+msgid "Avatar"
+msgstr "Аватар"
+
+#: account/templates/account/edit_profile.html:11
+msgid "Home"
+msgstr "Главная"
+
+#: account/templates/account/edit_profile.html:39
+msgid "Delete account"
+msgstr "Удалить аккаунт"
+
+#: account/templates/account/edit_profile.html:43
+msgid "Edit data"
+msgstr "Изменить данные"
+
+#: account/templates/account/profile.html:28
+msgid "About me"
+msgstr "Обо мне"
+
+#: account/templates/account/profile.html:31
+msgid "First Name"
+msgstr "Имя"
+
+#: account/templates/account/profile.html:34
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: account/templates/account/profile.html:39
+msgid "Email"
+msgstr "Почта"
+
+#: account/templates/account/profile.html:40
+msgid "Hide Email from other users?"
+msgstr "Скрыть Email от остальных?"
+
+#: account/templates/account/profile.html:42
+msgid "Profile settings"
+msgstr "Настройки профиля"
+
+#: account/templates/account/profile.html:43
+msgid "Send messages?"
+msgstr "Отправлять сообщения?"
+
+#: account/templates/account/profile.html:44
+msgid "Joining date"
+msgstr "Дата присоединения"
+
+#: account/templates/account/profile.html:45
+msgid "Change password"
+msgstr "Изменить пароль"
+
+#: account/templates/account/profile.html:50
+msgid "My publications"
+msgstr "Мои публикации"
+
+#: account/templates/account/profile.html:51
+#: album/templates/album/part_views/a_filters.html:15
+msgid "My albums"
+msgstr "Мои альбомы"
+
+#: account/templates/account/profile.html:52
+msgid "My photos"
+msgstr "Мои фотографии"
+
 #: account/templates/account/reset/password_reset_done.html:6
 msgid ""
 "We’ve emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly."
 msgstr ""
+"Мы отправили вам по электронной почте инструкции по заданию пароля, если "
+"учетная запись с указанным вами адресом электронной почты существует. Вы "
+"должны получить их в ближайшее время."
 
 #: account/templates/account/reset/password_reset_done.html:7
 msgid ""
 "If you don’t receive an email, please make sure you’ve entered the address "
 "you registered with, and check your spam folder."
 msgstr ""
+"Если вы не получили письмо, убедитесь, что вы ввели адрес, на который "
+"зарегистрировались, и проверьте папку со спамом."
 
 #: account/templates/account/reset/password_reset_email.html:2
 #, python-format
@@ -41,32 +229,170 @@ msgstr ""
 
 #: account/templates/account/reset/password_reset_email.html:4
 msgid "Please go to the following page and choose a new password:"
-msgstr ""
+msgstr "Пожалуйста, перейдите на следующую страницу и выберите новый пароль:"
 
 #: account/templates/account/reset/password_reset_email.html:8
 msgid "Your username, in case you’ve forgotten:"
-msgstr ""
+msgstr "Ваш логин, если вы забыли:"
 
 #: account/templates/account/reset/password_reset_email.html:10
 msgid "Thanks for using our site!"
-msgstr ""
+msgstr "Спасибо, что пользуетесь нашим сайтом! "
 
 #: account/templates/account/reset/password_reset_email.html:12
 #, python-format
 msgid "The %(site_name)s team"
 msgstr ""
 
-#: album/templates/album/album_list.html:15
-msgid "Home"
-msgstr "Главная"
+#: account/views.py:39
+msgid "User profile of"
+msgstr "Профиль пользователя"
 
-#: album/templates/album/album_list.html:22
-msgid "Filters"
-msgstr "Фильтры"
+#: account/views.py:40
+msgid "My profile"
+msgstr "Мой профиль"
 
-#: album/templates/album/album_list.html:27
+#: account/views.py:41
+msgid "Change my profile"
+msgstr "Изменить профиль"
+
+#: account/views.py:68
+msgid "Registration is not complete because there is no confirmation!"
+msgstr "Регистрация не завершена, т.к. нет подтверждения!"
+
+#: account/views.py:70
+msgid "Please check your email to continue registration."
+msgstr "Пожалуйста проверьте свою почту чтобы продолжить регистрацию."
+
+#: account/views.py:78
+msgid "Unable to identify user."
+msgstr "Не удается идентифицировать пользователя."
+
+#: account/views.py:79
+msgid "Please check the email and password you entered."
+msgstr "Проверьте вводимые email и пароль."
+
+#: account/views.py:87
+msgid "Password or login not set!"
+msgstr "Не задан пароль или логин!"
+
+#: account/views.py:95
+msgid "The user is already authorized"
+msgstr "Пользователь уже авторизован"
+
+#: account/views.py:124
+msgid "Create your profile. Join us."
+msgstr "Создайте профайл. Присоединяйтесь!"
+
+#: account/views.py:125
+msgid "Welcome! Join us!"
+msgstr "Добро пожаловать! Присоединяйтесь!"
+
+#: account/views.py:126
+msgid "Create Profile"
+msgstr "Создать профиль"
+
+#: account/views.py:158
+msgid "Changing the profile."
+msgstr "Изменение профиля."
+
+#: account/views.py:159
+msgid "Changing my profile"
+msgstr "Изменение профиля"
+
+#: account/views.py:160
+msgid "Change"
+msgstr "Изменить"
+
+#: account/views.py:171
+msgid "Your profile has been updated successfully."
+msgstr "Ваш профиль был успешно обновлен."
+
+#: album/forms.py:21
+msgid "Album name"
+msgstr "Имя альбома"
+
+#: album/forms.py:21
+msgid "Album description, emotions"
+msgstr "Описание альбома, эмоции"
+
+#: album/forms.py:21
+msgid "Travel month"
+msgstr "Период путешествия"
+
+#: album/forms.py:22
+msgid "Travel year"
+msgstr "Год путешествия"
+
+#: album/forms.py:22 album/templates/album/part_views/a_filters.html:34
+msgid "Travel destination"
+msgstr "Место путешествия"
+
+#: album/forms.py:23 album/templates/album/part_views/a_filters.html:60
+msgid "Travel participants"
+msgstr "Участники путешествия"
+
+#: album/forms.py:23 album/templates/album/part_views/a_filters.html:45
+msgid "Nature of travel"
+msgstr "Характер путешествия"
+
+#: album/templates/album/album.html:24
+msgid "Upload Photo"
+msgstr "Добавить фото"
+
+#: album/templates/album/album.html:29
+msgid "Edit album"
+msgstr "Редактировать альбом"
+
+#: album/templates/album/album.html:34 album/templates/album/album_list.html:31
+#: album/views/change.py:48
 msgid "Create Album"
 msgstr "Создать альбом"
+
+#: album/templates/album/album.html:60 album/views/show.py:108
+msgid "View photos"
+msgstr "Просмотр фотографий"
+
+#: album/templates/album/album.html:62 album/templates/album/album.html:72
+msgid "There are no photos in the album"
+msgstr "В альбоме нет фото"
+
+#: album/templates/album/album.html:69 album/templates/album/photo_list.html:51
+#: album/views/show.py:148
+msgid "Gallery"
+msgstr "Галерея"
+
+#: album/templates/album/album.html:84
+msgid "Journey"
+msgstr "Путешествие"
+
+#: album/templates/album/album.html:89
+msgid "Journey participants"
+msgstr "Участники путешествия"
+
+#: album/templates/album/album.html:93
+msgid "Journey type"
+msgstr "Характер путешествия"
+
+#: album/templates/album/album.html:96
+msgid "Created by"
+msgstr "Создал"
+
+#: album/templates/album/album.html:101
+msgid "Created"
+msgstr "Создан"
+
+#: album/templates/album/album.html:102
+msgid "Changed"
+msgstr "Изменен"
+
+#: album/templates/album/album.html:109
+msgid "Description"
+msgstr "Описание"
+
+#: album/templates/album/album_list.html:26
+msgid "Filters"
+msgstr "Фильтры"
 
 #: album/templates/album/index.html:10
 msgid "About the site"
@@ -91,19 +417,143 @@ msgstr ""
 "отдыхали.Наслаждайтесь своими воспоминаниями и удивляйтесь воспоминаниям "
 "других."
 
-#: album/views/show.py:68
-msgid "Photos"
-msgstr "Фотографии"
+#: album/templates/album/part_views/a_filters.html:5
+msgid "Reset"
+msgstr "Сброс"
 
-#: album/views/show.py:90
+#: album/templates/album/part_views/a_filters.html:6
+msgid "Search"
+msgstr "Поиск"
+
+#: album/templates/album/part_views/a_filters.html:20
+msgid "Travel period"
+msgstr "Период путешествия"
+
+#: album/templates/album/part_views/a_filters.html:76
+msgid "Sort"
+msgstr "Сортировать"
+
+#: album/templates/album/part_views/a_filters.html:80
+msgid "By album creation date"
+msgstr "По дате создания альбома"
+
+#: album/templates/album/part_views/a_filters.html:83
+msgid "From new to old"
+msgstr "От новых к старым"
+
+#: album/templates/album/part_views/a_filters.html:87
+msgid "From old to new"
+msgstr "От старых к новым"
+
+#: album/templates/album/photo_list.html:30
+msgid "Photos found:"
+msgstr "Найдено фото:"
+
+#: album/templates/album/photo_list.html:35
+msgid "Add photo"
+msgstr "Добавить фото"
+
+#: album/templates/album/photo_list.html:45
+msgid "More about the album"
+msgstr "Подробнее об альбоме"
+
+#: album/templates/album/photo_list.html:55
+msgid "Album:"
+msgstr "Альбом:"
+
+#: album/templates/album/photo_list.html:56
+msgid "Description:"
+msgstr "Описание:"
+
+#: album/templates/album/photo_list.html:57
+msgid "Created by:"
+msgstr "Создал:"
+
+#: album/templates/album/photo_list.html:77
+msgid "Edit photo"
+msgstr "Изменить фото"
+
+#: album/views/change.py:46
+msgid "Creating an Album."
+msgstr "Создание альбома"
+
+#: album/views/change.py:47
+msgid "Creating an Album"
+msgstr "Создание альбома"
+
+#: album/views/show.py:29
+msgid "Home page"
+msgstr "Главная страница"
+
+#: album/views/show.py:42
+msgid "View albums"
+msgstr "Смотреть альбомы"
+
+#: album/views/show.py:43 album/views/show.py:92 album/views/show.py:110
 msgid "Albums"
 msgstr "Альбомы"
 
-#: album/views/show.py:91
+#: album/views/show.py:45
+msgid "Mine"
+msgstr "Мои"
+
+#: album/views/show.py:47
+msgid "All"
+msgstr "Все"
+
+#: album/views/show.py:69
+msgid "Photos of "
+msgstr "Фотографии участника "
+
+#: album/views/show.py:70 album/views/show.py:111 album/views/show.py:135
+msgid "Photos"
+msgstr "Фотографии"
+
+#: album/views/show.py:93
 msgid "Album"
 msgstr "Альбом"
+
+#: album/views/show.py:134
+msgid "View photo"
+msgstr "Просмотр фото"
+
+#: album/views/show.py:136
+msgid "Photo"
+msgstr "Фотография"
+
+#: album/views/show.py:170
+msgid "Search photos by name"
+msgstr "Поиск фото по названию"
+
+#: album/views/show.py:171
+msgid "Photo search results"
+msgstr "Результаты поиска фото"
 
 #: templates/header.html:16
 msgid "Search photos"
 msgstr "Поиск фото"
 
+#: templates/part_views/login_window.html:7
+#: templates/part_views/login_window.html:22
+msgid "Login"
+msgstr "Вход"
+
+#: templates/part_views/login_window.html:20
+msgid "Forgot your password?"
+msgstr "Забыли пароль?"
+
+#: templates/part_views/login_window.html:25
+msgid "Not registered?"
+msgstr "Не зарегистрированы?"
+
+#: templates/part_views/login_window.html:26
+msgid "Join us"
+msgstr "Присоединяйтесь"
+
+#: touristalbum/settings.py:131
+msgid "Russia"
+msgstr ""
+
+#: touristalbum/settings.py:132
+msgid "English"
+msgstr ""

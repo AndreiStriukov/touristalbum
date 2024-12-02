@@ -1,6 +1,8 @@
 from django import forms
 from .models import *
 
+from django.utils.translation import gettext_lazy as _
+
 
 class AddPhotoForm(forms.ModelForm):
 
@@ -16,8 +18,9 @@ class AddAlbum(forms.ModelForm):
     class Meta:
         model = JourneyAlbum
         fields = ['a_name', 'a_descr', 'j_month', 'j_year', 'j_place', 'travel_participants', 'j_type']
-        # labels = {'a_name': 'Назовите альбом', 'a_descr': 'Опишите путешествие', 'j_month': 'Месяц путешествия',
-        #           'j_year': 'Год путешествия', 'j_place': 'Место путешествия'}
+        labels = {'a_name': _('Album name'), 'a_descr': _('Album description, emotions'), 'j_month': _('Travel month'),
+                  'j_year': _('Travel year'), 'j_place': _('Travel destination'), 
+                  'travel_participants': _('Travel participants'), 'j_type': _('Nature of travel')}
 
 
 class EditAlbum(forms.ModelForm):

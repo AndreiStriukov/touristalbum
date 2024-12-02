@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if widget.is_initial %}
     <p class="file-upload">{{ widget.initial_text }}:
         <a href="{{ widget.value.url }}">{{ widget.value }}</a>
@@ -17,7 +18,7 @@
             </label>
 
         <input class="input_avatar" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
-        <span id="selected_filename">Файл не выбран</span>
+        <span id="selected_filename">{% translate 'File not selected' %}</span>
         {% if widget.is_initial %}
 </p>
 {% endif %}

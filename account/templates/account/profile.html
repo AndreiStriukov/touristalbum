@@ -1,13 +1,14 @@
 {% extends 'layout.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}{{title}}{% endblock %}
+{% block title %} {{site_name}} {{title}}{% endblock %}
 
 {% block content %}
 
     <div class="form_center">
         <div>
-            <h3>Мой профиль</h3>
+            <h3>{{head}}</h3>
         </div>
         <hr>
         <div class="user_card">
@@ -19,36 +20,36 @@
                     </h3>
                 </div>
                 <div class="user_menu">
-                    <a href="{% url 'edit_account' %}" class="blue_button big_button">Изменить профиль</a>
+                    <a href="{% url 'edit_account' %}" class="blue_button big_button">{{button}}</a>
                 </div>
             </div>
             <div class="user_properties">
 
-                <h4>Обо мне:</h4>
-                <p>Логин: {{user.username}}</p>
+                <h4>{% translate 'About me' %}:</h4>
+                <p>{% translate 'Username' %}: {{user.username}}</p>
                 {% if user.first_name %}
-                    <p>Имя: {{user.first_name}}</p>
+                    <p>{% translate 'First Name' %}: {{user.first_name}}</p>
                 {% endif %}
                 {% if user.last_name %}
-                    <p>Фамилия: {{user.last_name}}</p>
+                    <p>{% translate 'Last Name' %}: {{user.last_name}}</p>
                 {% endif %}
-                <p>Язык: {{user.user_lang}}</p>
-                <p>День рождения: {{user.birthday|date:"d.m.Y"}}</p>
+                <p>{% translate 'Language' %}: {{user.user_lang}}</p>
+                <p>{% translate 'Birthday' %}: {{user.birthday|date:"d.m.Y"}}</p>
                 <hr>
-                <p>Email: {{user.email}}</p>
-                <p>Скрыть Email от остальных? <i class="{{user.hide_email}}"></i></p>
+                <p>{% translate 'Email' %}: {{user.email}}</p>
+                <p>{% translate 'Hide Email from other users?' %} <i class="{{user.hide_email}}"></i></p>
                 <hr>
-                <h4>Настройки профиля:</h4>
-                <p>Отправлять сообщения? <i class="{{user.send_messages}}"></i></p>
-                <p>Дата присоединения: {{user.date_joined|date:"d.m.Y"}}</p>
-                <p><a href="">Изменить пароль</a></p>
+                <h4>{% translate 'Profile settings' %}:</h4>
+                <p>{% translate 'Send messages?' %} <i class="{{user.send_messages}}"></i></p>
+                <p>{% translate 'Joining date' %}: {{user.date_joined|date:"d.m.Y"}}</p>
+                <p><a href="">{% translate 'Change password' %}</a></p>
             </div>
         </div>
         <hr>
         <div class="my_reviews">
-            <h4>Мои публикации:</h4>
-            <p><a href="{% url 'user_albums_list' user_id=user.pk %}">Мои альбомы</a></p>
-            <p><a href="{% url 'user_photo_list' user_id=user.pk %}">Мои фото</a></p>
+            <h4>{% translate 'My publications' %}:</h4>
+            <p><a href="{% url 'user_albums_list' user_id=user.pk %}">{% translate 'My albums' %}</a></p>
+            <p><a href="{% url 'user_photo_list' user_id=user.pk %}">{% translate 'My photos' %}</a></p>
         </div>
 
     </div>

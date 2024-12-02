@@ -17,8 +17,6 @@ def album_filters(self):
     place = self.request.GET.get('place')
     user_id = self.kwargs.get('user_id')
 
-    print('user_id = ' + str(user_id))
-
     filters = Q(a_is_active=True)
     if years:
         filters &= Q(j_year__in=years)
